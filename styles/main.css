@@ -38,6 +38,7 @@ body {
 .wrapper {
   display: flex;
   height: 100vh;
+  flex-direction: row-reverse;
 }
 
 .side-panel-toggle {
