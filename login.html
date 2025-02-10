@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+      src="https://kit.fontawesome.com/05ad49203b.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Login</title>
+    <!-- include javascript and css-->
+    <link rel="stylesheet" href="styles/main.css">
+    <script defer src="js/scripts.js"></script>
+  </head>
+  <body>
+    <header>
+      <!--This will be the main heading of the page so users know what page they're on-->
+      <h1>Login</h1>
+    </header>
+    <main>
+      No account? You can <a href="register.html">sign up now!</a>
+      <form action="login.php" method="post" class="login">
+        <fieldset>
+          <legend>Login Information</legend>
+          <div>
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              maxlength="32"
+              placeholder="ex. JohnDoe123"
+              required
+            >
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+
+          <div>
+            <label for="remember_me">Remember me:</label>
+            <input type="checkbox" id="remember_me" name="remember_me">
+          </div>
+        </fieldset>
+        <div>
+          <a href="forgot.html">Forgot Password?</a>
+        </div>
+        <input type="submit" value="Login">
+      </form>
+    </main>
+    <footer>
+        <nav>
+            <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
+            <ul>
+              <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+              <li><a><i class="fa-regular fa-circle-question"></i></a></li>
+              <li><a href="main.html"><i class="fa-solid fa-house"></i></a></li>
+              <li><a><i class="fa-solid fa-map"></i></a></li>
+              <li><a><i class="fa-solid fa-magnifying-glass-minus"></i></a></li>
+              <li><a><i class="fa-solid fa-magnifying-glass-plus"></i></a></li>
+              <li><a><i class="fa-solid fa-plus"></i></a></li>
+            </ul>
+          </nav>  
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
+  <title>DSLPOA GIS</title>
+  <!-- include javascript and css-->
+  <link rel="stylesheet" href="styles/main.css">
+  <script defer src="js/scripts.js"></script>
+</head>
+
+<body>
+  <header>
+    <!--This will be the main heading of the page so users know what page they're on-->
+    <h1>Welcome to the Main Page</h1>
+  </header>
+  <div class="wrapper side-panel-open">
+    <main>
+        <p>Map goes here!</p>
+        <nav>
+            <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
+            <ul>
+              <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+              <li><a><i class="fa-regular fa-circle-question"></i></a></li>
+              <li><a href="main.html"><i class="fa-solid fa-house"></i></a></li>
+              <li><a><i class="fa-solid fa-map"></i></a></li>
+              <li><a><i class="fa-solid fa-magnifying-glass-minus"></i></a></li>
+              <li><a><i class="fa-solid fa-magnifying-glass-plus"></i></a></li>
+              <li><a><i class="fa-solid fa-plus"></i></a></li>
+            </ul>
+        </nav>  
+    </main>
+    <button class="side-panel-toggle" type="button">
+        <span class="fa-solid fa-angles-left"></span>
+        <span class="fa-solid fa-angles-right"></span>
+    </button>
+    <div class="side-panel">
+        Can you see me?
+    </div>
+  </div>
+  <script>
+    document.querySelector(".side-panel-toggle").addEventListener("click", () => {
+    document.querySelector(".wrapper").classList.toggle("side-panel-open");});
+  </script>
+  <footer>
+  </footer>
+</body>
+
+</html>
