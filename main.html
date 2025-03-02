@@ -8,7 +8,7 @@
   <title>DSLPOA GIS</title>
   <!-- include javascript and css-->
   <link rel="stylesheet" href="styles/main.css">
-  <script defer src="js/scripts.js"></script>
+  <script defer src="scripts/scripts.js"></script>
 </head>
 
 <body>
@@ -19,6 +19,45 @@
   <div class="wrapper side-panel-open">
     <main>
         <p>Map goes here!</p>
+        <dialog add-pin-modal>
+          <form id="pin-form">
+            <fieldset>
+              <legend>Add a Pin</legend>
+              <div>
+                <label for="category">What would you like to add?</label><br>
+                <select name="category" id="category" required>
+                  <option value="">Please Choose One</option>
+                  <option value="birdwatch">Birdwatching Point</option>
+                  <option value="kayak">Kayaking Route</option>
+                  <option value="hazard">Hazard</option>
+                  <option value="invspec">Invasive Species</option>
+                </select>
+              </div>
+              <div>
+                <label for="pin-description">Please provide a description:</label>
+                <textarea
+                  id="pin-description"
+                  name="pin-description"
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <label for="supplement">Upload images:</label><br>
+                <input type="file" id="supplement" name="supplement" accept="image/png, image/jpeg" required/>
+              </div>
+              <div>
+                <label for="latitude">Latitude:</label>
+                <input type="text" id="latitude" name="latitude" required>
+                <label for="longitude">Longitude:</label>
+                <input type="text" id="longitude" name="longitude" required>
+                <button class="use-loc">Use Current Location</button>
+              </div>
+              <button type="submit">Submit</button>
+              <button class="modal-form-close">Cancel</button>
+            </fieldset>
+            
+          </form>
+        </dialog>
         <nav>
             <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
             <ul>
@@ -28,7 +67,9 @@
               <li><a><i class="fa-solid fa-map"></i></a></li>
               <li><a><i class="fa-solid fa-magnifying-glass-minus"></i></a></li>
               <li><a><i class="fa-solid fa-magnifying-glass-plus"></i></a></li>
-              <li><a><i class="fa-solid fa-plus"></i></a></li>
+              <li><button class="modal-form-open" type="button">
+                <span class="fa-solid fa-plus"></span>
+            </button></li>
             </ul>
         </nav>  
     </main>
@@ -37,13 +78,35 @@
         <span class="fa-solid fa-angles-right"></span>
     </button>
     <div class="side-panel">
-        Can you see me?
+      <div>
+      <img
+        src="images/Drag.png"
+        alt="The logo of the Drag and Spruce Lake Property Owners Association"
+        width="100"
+        height="100"
+      >
+    </div>
+    <ol class='dropdown'>
+      <li>Pins:
+        <ol>
+            <li>Birdwatching Point</li>
+            <li>Beaver Dam</li>
+        </ol>
+      </li>
+      <li>Routes:
+        <ol>
+            <li>Kayaking Route</li>
+        </ol>
+      </li>
+      <li>Layers:
+        <ol>
+            <li>Hazards</li>
+            <li>Invasive Species</li>
+        </ol>
+      </li>
+    </ol>
     </div>
   </div>
-  <script>
-    document.querySelector(".side-panel-toggle").addEventListener("click", () => {
-    document.querySelector(".wrapper").classList.toggle("side-panel-open");});
-  </script>
   <footer>
   </footer>
 </body>

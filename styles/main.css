@@ -10,6 +10,8 @@
   color: black;
 }
 
+/* LOTS of this css is a redundant artifact of my 3420 class,  should strip most of it down. */
+
 /* Header Styles */
 header {
   background-color: #0070c0; /* Header background color */
@@ -251,7 +253,8 @@ button.btn:hover {
 /* Form input fields */
 input[type="text"],
 input[type="password"],
-textarea {
+textarea,
+select {
   background-color: rgba(255, 255, 255, 0.8);
   border: 0.1em solid #aaa;
   border-radius: 0.35em;
