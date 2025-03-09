@@ -13,8 +13,8 @@
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         #map {
-            width: 1317px;
-            height: 852px;
+            width: 100%;
+            height: 600px;
         }
         </style>
         <title></title>
@@ -149,6 +149,8 @@
         });
         bounds_group.addLayer(layer_Drag_Lake_1);
         map.addLayer(layer_Drag_Lake_1);
+        //setting the map to the bounds of the DRAG LAKE layer
+        map.setMaxBounds(layer_Drag_Lake_1.getBounds());
         function pop_natural_tree_natural_scrub_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
