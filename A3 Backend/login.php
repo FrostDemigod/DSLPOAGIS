@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script
@@ -71,8 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
     <!-- include javascript and css-->
     <link rel="stylesheet" href="styles/main.css">
-    <script defer src="js/scripts.js"></script>
+    <script defer src="scripts/scripts.js"></script>
   </head>
+  <body>
   <body>
     <header>
       <!--This will be the main heading of the page so users know what page they're on-->
