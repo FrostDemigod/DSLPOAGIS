@@ -5,37 +5,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
-  <title>Pins</title>
+  <title>PINS</title>
   <!-- include javascript and css-->
   <link rel="stylesheet" href="styles/main.css">
   <script defer src="scripts/scripts.js"></script>
+  
+  <style>
+    main p {
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .dropdown {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .dropdown > li {
+      cursor: pointer;
+    }
+
+    .info-box {
+      display: none;
+      width: 250px;
+      padding: 10px;
+      margin-left: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
 
 <body>
   <header>
-    <!--This will be the main heading of the page so users know what page they're on-->
-    <h1>Welcome to the Pins Page</h1>
+    <h1>ADMIN VIEW: Old Pins</h1>
   </header>
-
-  <main>
-    
-  </main>
-  <footer>
-    <nav>
-        <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
+  
+  <div class="wrapper side-panel-open">
+    <main>
+    <img src="images/Drag.png" alt="Logo" width="100" height="100">
+      <nav>
         <ul>
-          <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i>
-            <span>Login</span>
-          </a></li>
-          <li><a><i class="fa-regular fa-circle-question"></i>
-            <span>Help</span>
-          </a></li>
-          <li><a href="main.html"><i class="fa-solid fa-house"></i>
-            <span>Main Page</span>
-          </a></li>
+          <li><a href="main.html"><i class="fa-solid fa-house"></i></a></li>
+          <li><a><i class="fa-solid fa-map"></i></a></li>
+          <li><a><i class="fa-solid fa-magnifying-glass-minus"></i></a></li>
+          <li><a><i class="fa-solid fa-magnifying-glass-plus"></i></a></li>
         </ul>
       </nav>  
-  </footer>
+      
+      <p>Map goes here!</p
+      
+      <div class="container">
+        <ol class="dropdown">
+          <li onclick="toggleInfo()">Old Pins:
+            <ol>
+              <li>Oil Spill</li>
+              <li>Canada Goose Nest</li>
+              <li>New Flowers</li>
+              <li>Graffiti</li>
+            </ol>
+          </li>
+        </ol>
+
+        <!-- Info box that appears on the right -->
+        <div id="infoBox" class="info-box">
+          <p>Details about the pin.</p>
+        </div>
+      </div>
+    </main>
+
+
+
+  <footer></footer>
+
+  <script>
+    function toggleInfo() {
+      var infoBox = document.getElementById("infoBox");
+      infoBox.style.display = infoBox.style.display === "none" || infoBox.style.display === "" ? "block" : "none";
+    }
+  </script>
+
 </body>
 
 </html>
