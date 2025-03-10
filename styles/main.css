@@ -42,19 +42,6 @@ body {
   height: 100vh;
   flex-direction: row-reverse;
 }
-
-.side-panel-toggle {
-  width: 3em;
-  height: 3em;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border: none;
-  border-radius: 0.25em 0 0 0.25em;
-}
-.fa-angles-left {
-  display: none !important;
-}
 .side-panel {
   display: none;
   width: 20vw;
@@ -62,15 +49,8 @@ body {
   padding: 2.4em;
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
 }
-
 .side-panel-open .side-panel {
  display: initial;
-}
-.side-panel-open .fa-angles-right {
-  display: none !important;
-}
-.side-panel-open .fa-angles-left {
-  display: initial !important;
 }
 
 /* Navigation Styles */

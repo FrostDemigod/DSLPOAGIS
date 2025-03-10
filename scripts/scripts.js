@@ -7,6 +7,9 @@ const checkEmail = str => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
 document.querySelector(".side-panel-toggle").addEventListener("click", () => {
   document.querySelector(".wrapper").classList.toggle("side-panel-open");
 });
+document.querySelector(".side-panel-close").addEventListener("click", () => {
+  document.querySelector(".wrapper").classList.toggle("side-panel-open");
+});
 
 const openModal = document.querySelector(".modal-form-open");
 const closeModal = document.querySelector(".modal-form-close");
