@@ -1,0 +1,1 @@
+<footer>&copy; 2023 - Farzad Imran & Akash Bahl</footer>
