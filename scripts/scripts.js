@@ -33,5 +33,24 @@ dialog.addEventListener("click", e => {
     e.clientY > dialogDimensions.bottom
   ) {
     dialog.close()
-  }
+  }  
 })
+
+//Location usage doesnt work rn
+document.querySelector('.use-loc').addEventListener('click', function() {
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+          // Get latitude and longitude from the position object
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          // Populate the input fields
+          document.getElementById('latitude').value = latitude;
+          document.getElementById('longitude').value = longitude;
+      }, function() {
+          alert('Unable to retrieve your location.');
+      });
+  } else {
+      alert('Geolocation is not supported by this browser.');
+  }
+});
