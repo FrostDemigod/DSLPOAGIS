@@ -19,12 +19,14 @@ openModal.addEventListener("click", () => {
   formModal.showModal();
 })
 closeModal.addEventListener("click", () => {
+  document.getElementById('latitude').value = null
+  document.getElementById('longitude').value = null
   formModal.close();
 })
 
 // Event listener to close dialog if you ever click off it
 // doesnt work right now
-dialog.addEventListener("click", e => {
+/*dialog.addEventListener("click", e => {
   const dialogDimensions = dialog.getBoundingClientRect()
   if (
     e.clientX < dialogDimensions.left ||
@@ -34,23 +36,27 @@ dialog.addEventListener("click", e => {
   ) {
     dialog.close()
   }  
-})
+})*/
 
 //Location usage doesnt work rn
-document.querySelector('.use-loc').addEventListener('click', function() {
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-          // Get latitude and longitude from the position object
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
+const http = new XMLHttpRequest()
 
-          // Populate the input fields
-          document.getElementById('latitude').value = latitude;
-          document.getElementById('longitude').value = longitude;
-      }, function() {
-          alert('Unable to retrieve your location.');
-      });
-  } else {
-      alert('Geolocation is not supported by this browser.');
-  }
+document.querySelector('.use-loc').addEventListener('click', function() {
+  getCoords();
 });
+
+function getCoords(){
+
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition((position) => {
+      document.getElementById('latitude').value = position.coords.latitude
+      document.getElementById('longitude').value = position.coords.longitude
+    },
+  (err) => {
+    alert(err.message)
+  })
+  }
+  else{
+    alert("Your browser does not support the location services")
+  }
+}
