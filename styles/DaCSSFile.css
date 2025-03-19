@@ -22,7 +22,8 @@ nav a:visited {
   border: 0.2em solid white;
   text-align: center;
   box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
-  margin-top: 0.5em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
   background-color: rgba(0, 0, 0, 25%);
   cursor: pointer;
   width: 2.7em;
@@ -39,7 +40,8 @@ nav button {
   border: 0.2em solid white;
   text-align: center;
   box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
-  margin-top: 0.5em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
   background-color: rgba(0, 0, 0, 25%);
   cursor: pointer;
   min-width: 2.7em;
