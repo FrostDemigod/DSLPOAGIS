@@ -32,7 +32,7 @@
         <!--<p>Map goes here!</p>-->
         <!-- Embed the map using an iframe width 1317px; height: 852px;-->
         <div class="map-container">
-        <iframe src="map/index.html" ></iframe>
+        <iframe id="map-frame" src="map/index.html" ></iframe>
         </div>
         <dialog add-pin-modal>
           <form id="pin-form">
@@ -73,6 +73,7 @@
             
           </form>
         </dialog>
+        <div>
         <nav>
             <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
             <ul>
@@ -89,11 +90,11 @@
                 <span class="fa-solid fa-map"></span>
                 <span>Map Layers</span>
               </button></li>
-              <li><button class="zoom-out" type="button">
+              <li><button id="zoom-out" class="zoom-out" type="button">
                 <span class="fa-solid fa-magnifying-glass-minus"></span>
                 <span>Zoom Out</span>
               </button></li>
-              <li><button class="zoom-in" type="button">
+              <li><button id="zoom-in" class="zoom-in" type="button">
                 <span class="fa-solid fa-magnifying-glass-plus"></span>
                 <span>Zoom In</span>
               </button></li>
@@ -102,7 +103,8 @@
                 <span>Add Pin</span>
             </button></li>
             </ul>
-        </nav>  
+        </nav>
+      </div>  
     </main>
     <div class="side-panel">
       <div>

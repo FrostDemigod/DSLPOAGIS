@@ -38,6 +38,31 @@ closeModal.addEventListener("click", () => {
   }  
 })*/
 
+// Zoom Functionality
+const iframe = document.getElementById('map-frame');
+const zoomInBtn = document.getElementById('zoom-in');
+const zoomOutBtn = document.getElementById('zoom-out');
+
+// Initial zoom level
+let zoomLevel = 1;
+
+// Function to zoom in
+if (zoomInBtn && zoomOutBtn && iframe) {
+    zoomInBtn.addEventListener('click', () => {
+        zoomLevel += 0.2;  // Increase zoom level
+        iframe.style.transform = `scale(${zoomLevel})`;
+        iframe.style.transformOrigin = '0 0';  // Keep zoom anchored at the top-left
+    });
+
+    // Function to zoom out
+    zoomOutBtn.addEventListener('click', () => {
+        zoomLevel -= 0.2;  // Decrease zoom level
+        if (zoomLevel < 0.5) zoomLevel = 0.5;  // Limit minimum zoom level
+        iframe.style.transform = `scale(${zoomLevel})`;
+        iframe.style.transformOrigin = '0 0';
+    });
+}
+
 //Location usage doesnt work rn
 const http = new XMLHttpRequest()
 
