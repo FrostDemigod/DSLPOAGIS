@@ -59,13 +59,13 @@ nav a:visited {
   text-decoration: none;
   color: white;
   display: inline-block;
-  padding: 0.5em 2.4em;
+  padding: 0.5em 2.2em;
   border-radius: 0.25em;
-  border: 0.1em solid #B1CCB4;
+  border: 0.2em solid white;
   text-align: center;
   box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
   margin-top: 0.5em;
-  background-color: #005080;
+  background-color: rgba(0, 0, 0, 25%);
   cursor: pointer;
   width: 2.7em;
   height: 2.7em;
@@ -75,13 +75,13 @@ nav button {
   text-decoration: none;
   color: white;
   display: inline-block;
-  padding: 0.5em 2.4em;
+  padding: 0.6em 2.64em;
   border-radius: 0.25em;
-  border: 0.1em solid #B1CCB4;
+  border: 0.2em solid white;
   text-align: center;
   box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
   margin-top: 0.5em;
-  background-color: #005080;
+  background-color: rgba(0, 0, 0, 25%);
   cursor: pointer;
   min-width: 2.7em;
   min-height: 2.7em;
@@ -91,8 +91,8 @@ nav button {
 nav a:hover,
 nav a:visited:hover,
 nav button:hover, i[class="fa-solid fa-pen-to-square"]:hover {
-  color: white;
-  background-color: green;
+  color: greenyellow;
+  border: 0.2em solid greenyellow;
   transform: scale(1.2);
   /* Change the background color on hover */
 }
@@ -101,8 +101,7 @@ nav button:hover, i[class="fa-solid fa-pen-to-square"]:hover {
 nav a:active,
 nav a:visited:active,
 nav button:active {
-  color: black;
-  background-color: darkgreen;
+  background-color:rgba(0, 0, 0, 50%);
   /* Change the background color on click */
 }
 
@@ -113,6 +112,16 @@ nav ul {
   max-width: 20rem;
   /* margin: 0 auto;*/
 }
+nav {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5em;
+  border: 0.2em solid white;
+  padding: 0.5em, 2.4em;
+  max-height: 5.4em;
+  background-color: rgba(0, 0, 0, 75%);
+}
+
 
 /* Additional Styles */
 form {

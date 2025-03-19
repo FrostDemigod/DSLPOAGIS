@@ -1,0 +1,84 @@
+/* Importing a CSS reset file */
+@import 'reset.css';
+
+/* Common styles for the entire page */
+:root {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1em; /* Base font size */
+  font-weight: 400;
+  background-color: white;
+  color: black;
+}
+
+/* Navigation Styles */
+/* Link Buttons */
+nav a,
+nav a:visited {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0.5em 2.2em;
+  border-radius: 0.25em;
+  border: 0.2em solid white;
+  text-align: center;
+  box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
+  margin-top: 0.5em;
+  background-color: rgba(0, 0, 0, 25%);
+  cursor: pointer;
+  width: 2.7em;
+  height: 2.7em;
+}
+
+/* Normal Buttons */
+nav button {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0.6em 2.64em;
+  border-radius: 0.25em;
+  border: 0.2em solid white;
+  text-align: center;
+  box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
+  margin-top: 0.5em;
+  background-color: rgba(0, 0, 0, 25%);
+  cursor: pointer;
+  min-width: 2.7em;
+  min-height: 2.7em;
+}
+
+/* Change Colour on Button Hover */
+nav a:hover,
+nav a:visited:hover,
+nav button:hover, i[class="fa-solid fa-pen-to-square"]:hover {
+  color: greenyellow;
+  border: 0.2em solid greenyellow;
+  transform: scale(1.2);
+  /* Change the background color on hover */
+}
+
+/* Darken background when clicking */
+nav a:active,
+nav a:visited:active,
+nav button:active {
+  background-color:rgba(0, 0, 0, 50%);
+  /* Change the background color on click */
+}
+
+/* List Styling */
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  max-width: 20rem;
+  /* margin: 0 auto;*/
+}
+/* Positioning */
+nav {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5em;
+  border: 0.2em solid white;
+  padding: 0.5em, 2.4em;
+  max-height: 5.4em;
+  background-color: rgba(0, 0, 0, 75%);
+}
