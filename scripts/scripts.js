@@ -60,3 +60,14 @@ function getCoords(){
     alert("Your browser does not support the location services")
   }
 }
+
+// zoom in and zooom out functionality for map and main.html
+document.querySelector('.zoom-in').addEventListener('click', () => {
+  const iframe = document.querySelector('.map-container iframe');
+  iframe.contentWindow.postMessage('zoomIn', '*');
+});
+
+document.querySelector('.zoom-out').addEventListener('click', () => {
+  const iframe = document.querySelector('.map-container iframe');
+  iframe.contentWindow.postMessage('zoomOut', '*');
+});

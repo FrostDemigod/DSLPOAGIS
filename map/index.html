@@ -452,7 +452,7 @@
         });
         bounds_group.addLayer(layer_water_depth_dragLake_5);
         map.addLayer(layer_water_depth_dragLake_5);
-        map.setMaxBounds(layer_water_depth_dragLake_5.getBounds());
+        //map.setMaxBounds(layer_water_depth_dragLake_5.getBounds());
         function pop_Hazards_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -675,6 +675,23 @@
         map.on("layerremove", function(){
             resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
         });
+
+        // Functions to add zoom in and out using zoomIn and zoomOut built-in fucnctions from Leaflet
+        function zoomIn(){
+            map.zoomIn();
+        }
+        function zoomOut(){
+            map.zoomOut();
+        }
+        // listen for messages from main.html page
+        window.addEventListener('message', (event) => {
+            if (event.data === 'zoomIn') {
+                zoomIn();
+            } else if (event.data === 'zoomOut') {
+                zoomOut();
+            }
+        });
+
         </script>
     </body>
 </html>
