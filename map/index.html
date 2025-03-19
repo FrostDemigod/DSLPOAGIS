@@ -595,12 +595,14 @@
         });
         bounds_group.addLayer(layer_BirdWatchingPoints_7);
         map.addLayer(layer_BirdWatchingPoints_7);
-        var osmGeocoder = new L.Control.Geocoder({
+
+        //the search bar from the map
+        /*var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
             text: 'Search',
             title: 'Testing'
-        }).addTo(map);
+        }).addTo(map);*/
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
