@@ -1,6 +1,11 @@
-<!--PHP section-->
 <?php
-require './includes/library.php';
+$file = __DIR__ . "/includes/library.php";
+
+if (!file_exists($file)) {
+    die("Error: library.php file is missing at $file");
+}
+
+require_once $file;
 session_start(); // Start the session
 
 // Check if the user is already logged in, if so, redirect to the Main Page
@@ -10,125 +15,118 @@ if (isset($_SESSION['username'])) {
 }
 
 // Check if a cookie exists, if yes, pre-populate the username box
-if (isset($_COOKIE['remember_me'])) {
-    $prepopulatedUsername = $_COOKIE['remember_me'];
-} else {
-    $prepopulatedUsername = '';
-}
+$prepopulatedUsername = isset($_COOKIE['remember_me']) ? $_COOKIE['remember_me'] : '';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $pdo = connectDB();
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+    $pdo = connectDB();
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $rememberMe = isset($_POST['remember_me']) ? $_POST['remember_me'] : false;
 
-  // Sanitize all text inputs
-  $username= htmlspecialchars($username);
-  $password= htmlspecialchars($password);
+    // Fetch user data from the database
+    $stmt = $pdo->prepare('SELECT id, password FROM users WHERE username = ?');
+    $stmt->execute([$username]);
+    $userData = $stmt->fetch();
 
-  $rememberMe = isset($_POST['remember_me']) ? $_POST['remember_me'] : false;
+    // Verify password
+    if ($userData && password_verify($password, $userData['password'])) {
+        // Store user data in session variables
+        $_SESSION['username'] = $username;
+        $_SESSION['user_id'] = $userData['id'];
 
-  // Fetch user data from the database
-  $stmt = $pdo->prepare("SELECT id, password FROM 3420_assg_users WHERE username = ?");
-  $stmt->execute([$username]);
-  $userData = $stmt->fetch();
+        // Create a cookie if "remember me" is checked
+        if ($rememberMe) {
+            setcookie('remember_me', $username, time() + (86400 * 30), "/"); // 30 days
+        } else {
+            // If "remember me" is not checked, clear the cookie
+            setcookie('remember_me', '', time() - 3600, "/");
+        }
 
-  // Verify password
-  if ($userData && password_verify($password, $userData['password'])) {
-      // Password is correct, start a new session
-      session_start();
+        // Table checking logic - display tables from the database
+        $dbName = $pdo->query('SELECT current_database()')->fetchColumn();
+        echo "Connected to database: $dbName<br>";
 
-      // Store user data in session variables
-      $_SESSION['username'] = $username;
-      $_SESSION['user_id'] = $userData['id'];
+        $schema = $pdo->query("SELECT current_schema()")->fetchColumn();
+        echo "Current Schema: $schema<br>";
 
-      // Create a cookie if "remember me" is checked
-      if ($rememberMe) {
-          setcookie('remember_me', $username, time() + (86400 * 30), "/"); // 30 days
-      } else {
-          // If "remember me" is not checked, clear the cookie
-          setcookie('remember_me', '', time() - 3600, "/");
-      }
+        // Fetch tables in the schema
+        $query = $pdo->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'");
+        $tables = $query->fetchAll(PDO::FETCH_COLUMN);
 
-      // Redirect to the Main Page
-      header("Location: index.php");
-      exit();
-  } else {
-      $error_message = "Invalid username or password";
-  }
+        if ($tables) {
+            echo "<h2>Tables in the database:</h2><ul>";
+            foreach ($tables as $table) {
+                echo "<li>$table</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "No tables found in the database.";
+        }
+
+        // Redirect to the Main Page
+        header("Location: index.php");
+        exit();
+    } else {
+        $error_message = "Invalid username or password";
+    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script
-      src="https://kit.fontawesome.com/05ad49203b.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
     <title>Login</title>
-    <!-- include javascript and css-->
     <link rel="stylesheet" href="styles/main.css">
     <script defer src="js/scripts.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <!--This will be the main heading of the page so users know what page they're on-->
-      <h1>Login</h1>
-
-      <?php include './includes/nav.php' ?>
+        <h1>Login</h1>
+        <?php include './includes/nav.php' ?>
     </header>
     <main>
-    <?php
-      if (isset($error_message)) {
-          echo "<p>$error_message</p>";
-      }
-      ?>
-      No account? You can <a href="register.php">sign up now!</a>
-      <form id="login-form" action="login.php" method="post" class="login">
-        <fieldset>
-          <legend>Login Information</legend>
-          <div>
-            <label for="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              maxlength="32"
-              placeholder="ex. JohnDoe123"
-              required
-            >
-          </div>
-          <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="checkbox" id="showPassword" onclick="Toggle()"> <!-- Use the provided function to toggle password visibility -->
-            <label for="showPassword">Show Password</label>
-          </div>
-          <script>function Toggle() {
-    let temp = document.getElementById("password");
-  
-    if (temp.type === "password") {
-      temp.type = "text";
-    } else {
-      temp.type = "password";
-    }
-  }
-  </script>
+        <?php
+        if (isset($error_message)) {
+            echo "<p>$error_message</p>";
+        }
+        ?>
+        <p>No account? You can <a href="register.php">sign up now!</a></p>
+        <form id="login-form" action="login.php" method="post" class="login">
+            <fieldset>
+                <legend>Login Information</legend>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" maxlength="32" placeholder="ex. JohnDoe123" required value="<?php echo htmlspecialchars($prepopulatedUsername); ?>">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <input type="checkbox" id="showPassword" onclick="Toggle()">
+                    <label for="showPassword">Show Password</label>
+                </div>
 
-          <div>
-            <label for="remember_me">Remember me:</label>
-            <input type="checkbox" id="remember_me" name="remember_me">
-          </div>
-        </fieldset>
-        <div>
-          <a href="forgot.php">Forgot Password?</a>
-        </div>
-        <input type="submit" value="Login">
-      </form>
+                <div>
+                    <label for="remember_me">Remember me:</label>
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                </div>
+            </fieldset>
+            <div>
+                <a href="forgot.php">Forgot Password?</a>
+            </div>
+            <input type="submit" value="Login">
+        </form>
     </main>
     <?php include './includes/footer.php' ?>
-  </body>
+</body>
 </html>
+
+<script>
+function Toggle() {
+    let temp = document.getElementById("password");
+    temp.type = temp.type === "password" ? "text" : "password";
+}
+</script>

@@ -3,9 +3,9 @@
 
 function connectDB() {
     $host = 'localhost';
-    $dbname = 'dslpoa_gis'; 
+    $dbname = 'logintest'; 
     $user = 'postgres';   
-    $pass = 'COIS4000'; // Replace with your actual DB password
+    $pass = 'bugNbean1'; // Replace with your actual DB password
 
     try {
         $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
