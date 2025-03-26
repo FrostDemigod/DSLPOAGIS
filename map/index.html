@@ -597,12 +597,12 @@
         map.addLayer(layer_BirdWatchingPoints_7);
 
         //the search bar from the map
-        /*var osmGeocoder = new L.Control.Geocoder({
+        var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
             text: 'Search',
             title: 'Testing'
-        }).addTo(map);*/
+        }).addTo(map);
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
@@ -622,8 +622,8 @@
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
             //openedSymbol: '&#8863; &#x1f5c1;',
-            //collapseAll: 'Collapse all',
-            //expandAll: 'Expand all',
+            collapseAll: 'Collapse all',
+            expandAll: 'Expand all',
             collapsed: true,
         });
         lay.addTo(map);

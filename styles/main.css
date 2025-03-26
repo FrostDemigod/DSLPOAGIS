@@ -32,7 +32,6 @@ body {
   font-family: Arial, sans-serif;
   min-height: 100vh;
   font-size: 1em;
-  background: url("../images/BGColour.png") top left no-repeat fixed;
   /* Background image with fixed position */
 }
 
