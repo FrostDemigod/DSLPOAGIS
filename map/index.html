@@ -14,7 +14,7 @@
         <style>
         #map {
             width: 100%;
-            height: 600px;
+            height: 50em;
         }
         </style>
         <title></title>
@@ -48,7 +48,7 @@
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
-            zoomControl:false, maxZoom:28, minZoom:1
+            zoomControl:false, maxZoom:28, minZoom:12
         }).fitBounds([[45.04008302247248,-78.49138124977759],[45.109190449972736,-78.33998570144514]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -81,9 +81,9 @@
 				popup._contentNode.classList.remove('media');
 			}
 		}
-        var zoomControl = L.control.zoom({
+        /*var zoomControl = L.control.zoom({
             position: 'topleft'
-        }).addTo(map);
+        }).addTo(map);*/
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -595,6 +595,8 @@
         });
         bounds_group.addLayer(layer_BirdWatchingPoints_7);
         map.addLayer(layer_BirdWatchingPoints_7);
+
+        //the search bar from the map
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -620,8 +622,8 @@
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
             //openedSymbol: '&#8863; &#x1f5c1;',
-            //collapseAll: 'Collapse all',
-            //expandAll: 'Expand all',
+            collapseAll: 'Collapse all',
+            expandAll: 'Expand all',
             collapsed: true,
         });
         lay.addTo(map);
@@ -675,6 +677,23 @@
         map.on("layerremove", function(){
             resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
         });
+
+        // Functions to add zoom in and out using zoomIn and zoomOut built-in fucnctions from Leaflet
+        function zoomIn(){
+            map.zoomIn();
+        }
+        function zoomOut(){
+            map.zoomOut();
+        }
+        // listen for messages from main.html page
+        window.addEventListener('message', (event) => {
+            if (event.data === 'zoomIn') {
+                zoomIn();
+            } else if (event.data === 'zoomOut') {
+                zoomOut();
+            }
+        });
+
         </script>
     </body>
 </html>

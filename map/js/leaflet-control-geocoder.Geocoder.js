@@ -79,9 +79,9 @@
 
                 initialize: function (options) {
                   L.Util.setOptions(this, options);
-                  if (!this.options.geocoder) {
+                  /*if (!this.options.geocoder) {
                     this.options.geocoder = new Nominatim();
-                  }
+                  }*/
 
                   this._requestCount = 0;
                 },
@@ -129,10 +129,10 @@
                   );
                   L.DomEvent.disableClickPropagation(this._alts);
 
-                  L.DomEvent.addListener(input, "keydown", this._keydown, this);
+                  /*L.DomEvent.addListener(input, "keydown", this._keydown, this);
                   if (this.options.geocoder.suggest) {
                     L.DomEvent.addListener(input, "input", this._change, this);
-                  }
+                  }*/
                   L.DomEvent.addListener(
                     input,
                     "blur",
