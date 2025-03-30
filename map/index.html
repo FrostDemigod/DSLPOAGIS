@@ -1119,6 +1119,23 @@
 
         map.setMaxBounds(layer_Lake_bounds_1.getBounds());
 
+        // Functions to add zoom in and out using zoomIn and zoomOut built-in fucnctions from Leaflet
+        function zoomIn(){
+            map.zoomIn();
+        }
+        function zoomOut(){
+            map.zoomOut();
+        }
+        // listen for messages from main.html page
+        window.addEventListener('message', (event) => {
+            if (event.data === 'zoomIn') {
+                zoomIn();
+            } else if (event.data === 'zoomOut') {
+                zoomOut();
+            }
+        });
+
+
         </script>
     </body>
 </html>
