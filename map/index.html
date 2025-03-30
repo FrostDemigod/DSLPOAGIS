@@ -33,14 +33,19 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="data/natural_water_1.js"></script>
-        <script src="data/waterway_dam_2.js"></script>
-        <script src="data/CanoeRoute_3.js"></script>
-        <script src="data/Nav_buoy_4.js"></script>
-        <script src="data/water_depth_dragLake_5.js"></script>
-        <script src="data/Hazards_6.js"></script>
-        <script src="data/BirdWatchingPoints_7.js"></script>
+        <script src="data/Lake_bounds_1.js"></script>
+        <script src="data/natural_tree_natural_scrub_2.js"></script>
+        <script src="data/natural_water_3.js"></script>
+        <script src="data/waterway_dam_4.js"></script>
+        <script src="data/Highways_5.js"></script>
+        <script src="data/Residential_Street_6.js"></script>
+        <script src="data/water_depth_dragLake_7.js"></script>
+        <script src="data/nav_buoy_8.js"></script>
+        <script src="data/invasive_species_9.js"></script>
+        <script src="data/Hazards_10.js"></script>
+        <script src="data/kayak_route_11.js"></script>
+        <script src="data/beaver_dam_12.js"></script>
+        <script src="data/bird_watching_points_13.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -678,21 +683,7 @@
             resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
         });
 
-        // Functions to add zoom in and out using zoomIn and zoomOut built-in fucnctions from Leaflet
-        function zoomIn(){
-            map.zoomIn();
-        }
-        function zoomOut(){
-            map.zoomOut();
-        }
-        // listen for messages from main.html page
-        window.addEventListener('message', (event) => {
-            if (event.data === 'zoomIn') {
-                zoomIn();
-            } else if (event.data === 'zoomOut') {
-                zoomOut();
-            }
-        });
+        map.setMaxBounds(layer_Lake_bounds_1.getBounds());
 
         </script>
     </body>
