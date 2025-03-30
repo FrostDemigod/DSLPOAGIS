@@ -96,3 +96,16 @@ document.querySelector('.zoom-out').addEventListener('click', () => {
   const iframe = document.querySelector('.map-container iframe');
   iframe.contentWindow.postMessage('zoomOut', '*');
 });
+
+// Help Modal Functionality
+const helpButton = document.querySelector(".help-btn");
+const helpModal = document.querySelector(".help-modal");
+const closeModalButton = document.querySelector(".modal-close");
+
+helpButton.addEventListener("click", () => {
+  helpModal.showModal();
+});
+
+closeModalButton.addEventListener("click", () => {
+  helpModal.close();
+});

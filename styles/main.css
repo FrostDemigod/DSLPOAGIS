@@ -355,4 +355,51 @@ form.search-form {
   border-radius: 0.15em;
 }
 
+/* Help Modal Styles */
+.help-modal {
+  width: 50%;
+  max-width: 600px;
+  padding: 2em;
+  background-color: white;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.help-modal h2 {
+  font-size: 2rem;
+  margin-bottom: 1em;
+}
+
+.help-modal p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.help-modal .modal-close {
+  background-color: #0070c0;
+  color: white;
+  padding: 0.5em 1.5em;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1em;
+}
+
+.help-modal .modal-close:hover {
+  background-color: #005090;
+}
+
+body {
+  position: relative;
+}
+
+body .help-modal[open] {
+  display: block;
+}
 
