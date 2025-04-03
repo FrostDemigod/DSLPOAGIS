@@ -129,6 +129,7 @@
                 interactive: false,
             }
         }
+      
         map.createPane('pane_Lake_bounds_1');
         map.getPane('pane_Lake_bounds_1').style.zIndex = 401;
         map.getPane('pane_Lake_bounds_1').style['mix-blend-mode'] = 'normal';
@@ -140,8 +141,8 @@
             pane: 'pane_Lake_bounds_1',
             onEachFeature: pop_Lake_bounds_1,
             style: style_Lake_bounds_1_0,
-        });
-        bounds_group.addLayer(layer_Lake_bounds_1);
+        }); 
+        //bounds_group.addLayer(layer_Lake_bounds_1);
         function pop_natural_tree_natural_scrub_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -1032,7 +1033,9 @@
             {label: '<img src="legend/natural_tree_natural_scrub_2.png" /> natural_tree_natural_scrub', layer: layer_natural_tree_natural_scrub_2},
             {label: '<img src="legend/Lake_bounds_1.png" /> Lake_bounds', layer: layer_Lake_bounds_1},
             {label: "OSM Standard", layer: layer_OSMStandard_0, radioGroup: 'bm' },]
-        var lay = L.control.layers.tree(null, overlaysTree,{
+
+        // commenting out the layers checkbox tree for now 
+        /*var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
@@ -1041,7 +1044,34 @@
             //expandAll: 'Expand all',
             collapsed: false, 
         });
-        lay.addTo(map);
+        lay.addTo(map);*/
+
+        // adding layer control to access from main.html--------------------
+        // Map layers
+        const layers = {
+            BirdWatchingPoints: layer_bird_watching_points_13,
+            BeaverDams: layer_beaver_dam_12,
+            KayakingRoutes: layer_kayak_route_11,
+            Hazards: layer_Hazards_10,
+            InvasiveSpecies: layer_invasive_species_9,
+        };
+
+        // Listen for messages from the parent page to toggle layers
+        window.addEventListener('message', (event) => {
+            const { action, layerName } = event.data;
+
+            if (action === 'toggleLayer' && layers[layerName]) {
+                const layer = layers[layerName];
+                if (map.hasLayer(layer)) {
+                    map.removeLayer(layer);
+                } else {
+                    map.addLayer(layer);
+                }
+            }
+        });
+        // layer control to acces layers from main.html ends -----------------
+
+
 		document.addEventListener("DOMContentLoaded", function() {
             // set new Layers List height which considers toggle icon
             function newLayersListHeight() {
