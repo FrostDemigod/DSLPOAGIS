@@ -72,12 +72,13 @@ document.querySelector('.zoom-out').addEventListener('click', () => {
   iframe.contentWindow.postMessage('zoomOut', '*');
 });
 
+
 // Add event listeners to layer checkboxes
 document.querySelectorAll('.dropdown input[type="checkbox"]').forEach((checkbox) => {
   checkbox.addEventListener('change', (event) => {
     const layerName = event.target.getAttribute('data-layer');
     const iframe = document.querySelector('.map-container iframe');
-
+  
     // Send a message to the iframe to toggle the layer
     iframe.contentWindow.postMessage({ action: 'toggleLayer', layerName }, '*');
   });
