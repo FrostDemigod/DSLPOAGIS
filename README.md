@@ -57,3 +57,43 @@ Follow these steps to export your GIS map from QGIS using the qgis2web plugin:
 
 This guide ensures a smooth export process for sharing GIS maps online. For any issues, consult the QGIS logs or community forums.
 
+
+### To Remove layer checkbox from the map: 
+Look and comment out the following in index.html:
+
+```html
+    var lay = L.control.layers.tree(null, overlaysTree,{
+        ...
+        collapsed: false, 
+    });
+    lay.addTo(map);
+```
+
+And add:
+
+```html
+
+        // Map layers
+        const layers = {
+            BirdWatchingPoints: layer_bird_watching_points_13,
+            BeaverDams: layer_beaver_dam_12,
+            KayakingRoutes: layer_kayak_route_11,
+            Hazards: layer_Hazards_10,
+            InvasiveSpecies: layer_invasive_species_9,
+        };
+
+        // Listen for messages from the parent page to toggle layers
+        window.addEventListener('message', (event) => {
+            const { action, layerName } = event.data;
+
+            if (action === 'toggleLayer' && layers[layerName]) {
+                const layer = layers[layerName];
+                if (map.hasLayer(layer)) {
+                    map.removeLayer(layer);
+                } else {
+                    map.addLayer(layer);
+                }
+            }
+        });
+```
+
