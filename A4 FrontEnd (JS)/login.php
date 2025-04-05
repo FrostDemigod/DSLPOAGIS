@@ -1,74 +1,46 @@
 <?php
-$file = __DIR__ . "/includes/library.php";
-
-if (!file_exists($file)) {
-    die("Error: library.php file is missing at $file");
+session_start();
+require './includes/library.php';
+try {
+    $pdo = connectDB(); // Use your database connection function
+    echo "<p style='color: green;'>✅ Database connected successfully!</p>";
+} catch (PDOException $e) {
+    die("<p style='color: red;'>❌ Database connection failed: " . $e->getMessage() . "</p>");
 }
+$pdo = connectDB();
 
-require_once $file;
-session_start(); // Start the session
-
-// Check if the user is already logged in, if so, redirect to the Main Page
 if (isset($_SESSION['username'])) {
     header("Location: index.php");
     exit();
 }
 
-// Check if a cookie exists, if yes, pre-populate the username box
-$prepopulatedUsername = isset($_COOKIE['remember_me']) ? $_COOKIE['remember_me'] : '';
+$prepopulatedUsername = $_COOKIE['remember_me'] ?? '';
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pdo = connectDB();
-    $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
-    $rememberMe = isset($_POST['remember_me']) ? $_POST['remember_me'] : false;
+$errors = [];
 
-    // Fetch user data from the database
-    $stmt = $pdo->prepare('SELECT id, password FROM users WHERE username = ?');
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = trim(htmlspecialchars($_POST['username']));
+    $password = $_POST['password'] ?? "";
+    $rememberMe = isset($_POST['remember_me']);
+
+    $stmt = $pdo->prepare('SELECT id, password_hash FROM users WHERE username = ?');
     $stmt->execute([$username]);
-    $userData = $stmt->fetch();
+    $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Verify password
-    if ($userData && password_verify($password, $userData['password'])) {
-        // Store user data in session variables
+    if (!$userData || !password_verify($password, $userData['password_hash'])) {
+        $errors['login'] = "Invalid username or password.";
+    } else {
         $_SESSION['username'] = $username;
         $_SESSION['user_id'] = $userData['id'];
 
-        // Create a cookie if "remember me" is checked
         if ($rememberMe) {
-            setcookie('remember_me', $username, time() + (86400 * 30), "/"); // 30 days
+            setcookie('remember_me', $username, time() + (86400 * 30), "/");
         } else {
-            // If "remember me" is not checked, clear the cookie
             setcookie('remember_me', '', time() - 3600, "/");
         }
 
-        // Table checking logic - display tables from the database
-        $dbName = $pdo->query('SELECT current_database()')->fetchColumn();
-        echo "Connected to database: $dbName<br>";
-
-        $schema = $pdo->query("SELECT current_schema()")->fetchColumn();
-        echo "Current Schema: $schema<br>";
-
-        // Fetch tables in the schema
-        $query = $pdo->query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'");
-        $tables = $query->fetchAll(PDO::FETCH_COLUMN);
-
-        if ($tables) {
-            echo "<h2>Tables in the database:</h2><ul>";
-            foreach ($tables as $table) {
-                echo "<li>$table</li>";
-            }
-            echo "</ul>";
-        } else {
-            echo "No tables found in the database.";
-        }
-
-        // Redirect to the Main Page
         header("Location: index.php");
         exit();
-    } else {
-        $error_message = "Invalid username or password";
     }
 }
 ?>
@@ -77,56 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
     <title>Login</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <script defer src="js/scripts.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Login</h1>
-        <?php include './includes/nav.php' ?>
-    </header>
-    <main>
-        <?php
-        if (isset($error_message)) {
-            echo "<p>$error_message</p>";
-        }
-        ?>
-        <p>No account? You can <a href="register.php">sign up now!</a></p>
-        <form id="login-form" action="login.php" method="post" class="login">
-            <fieldset>
-                <legend>Login Information</legend>
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" maxlength="32" placeholder="ex. JohnDoe123" required value="<?php echo htmlspecialchars($prepopulatedUsername); ?>">
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    <input type="checkbox" id="showPassword" onclick="Toggle()">
-                    <label for="showPassword">Show Password</label>
-                </div>
-
-                <div>
-                    <label for="remember_me">Remember me:</label>
-                    <input type="checkbox" id="remember_me" name="remember_me">
-                </div>
-            </fieldset>
-            <div>
-                <a href="forgot.php">Forgot Password?</a>
-            </div>
-            <input type="submit" value="Login">
-        </form>
-    </main>
-    <?php include './includes/footer.php' ?>
+    <form action="login.php" method="post">
+        <input type="text" name="username" placeholder="Username" value="<?= htmlspecialchars($prepopulatedUsername) ?>" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <label><input type="checkbox" name="remember_me"> Remember me</label>
+        <button type="submit">Login</button>
+        <span class="error"><?= $errors['login'] ?? '' ?></span>
+    </form>
 </body>
 </html>
-
-<script>
-function Toggle() {
-    let temp = document.getElementById("password");
-    temp.type = temp.type === "password" ? "text" : "password";
-}
-</script>

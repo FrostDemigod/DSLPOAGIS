@@ -3,6 +3,7 @@
 
 function connectDB() {
     $host = 'localhost';
+    $port = '5433';
     $dbname = 'logintest'; 
     $user = 'postgres';   
     $pass = 'bugNbean1'; // Replace with your actual DB password
