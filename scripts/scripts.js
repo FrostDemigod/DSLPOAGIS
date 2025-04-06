@@ -87,7 +87,7 @@ const helpMessages = [
     img: "images/Zoom.png"
   },
   {
-    text: "Click the 'Add Pin' button to mark specific locations. You can add a description, upload an image, and save your pin for future reference once you have an account.",
+    text: "Click the 'Add Pin' button to mark specific locations. You can add a description, upload an image, and save your pin for future reference once you have an account.", /* final */
     img: "images/Add.png"
   },
   {

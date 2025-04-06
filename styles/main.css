@@ -411,24 +411,24 @@ body .help-modal[open] {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: white;
+  color: white; /* not offwhite */
   padding: 0.7em 2.64em; 
   border-radius: 0.25em;
-  border: 0.2em solid white;
+  border: 0.2em solid white; /* not offwhite */
   text-align: center;
   box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
   margin-top: 0.2em;
   margin-bottom: 0.2em;
   background-color: rgba(0, 0, 0, 25%);
   cursor: pointer;
-  min-width: 2.7em;   /* Consistent size with others */
-  min-height: 4em;    /* Increase height for vertical alignment */
+  min-width: 2.7em;   /* Consistent size with others done*/
+  min-height: 4em;    /* Increase height for vertical alignment done*/
 }
 
 /* Styling the icon and text */
 .help-icon i {
-  font-size: 1.5em;     /* Larger icon */
-  margin-bottom: 0.3em; /* Add spacing below the icon */
+  font-size: 1.5em;     /* Larger icon done*/
+  margin-bottom: 0.3em; /* Add spacing below the icon final*/
 }
 
 .help-text {
@@ -437,8 +437,8 @@ body .help-modal[open] {
 
 /* Hover and Active Effects */
 .help-button:hover {
-  color: greenyellow;
-  border: 0.2em solid greenyellow;
+  color: greenyellow; /* final */
+  border: 0.2em solid greenyellow; /* final */
   transform: scale(1.2);
 }
 
