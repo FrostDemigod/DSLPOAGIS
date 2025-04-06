@@ -354,3 +354,94 @@ form.search-form {
   border: 0.25em solid #ccc;
   border-radius: 0.15em;
 }
+
+/* Help Modal Styles */
+.help-modal {
+  width: 50%;
+  max-width: 600px;
+  padding: 2em;
+  background-color: white;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.help-modal h2 {
+  font-size: 2rem;
+  margin-bottom: 1em;
+}
+
+.help-modal p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.help-modal .modal-close {
+  background-color: #0070c0;
+  color: white;
+  padding: 0.5em 2.2em;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1em;
+}
+
+.help-modal .modal-close:hover {
+  background-color: #005090;
+}
+
+body {
+  position: relative;
+}
+
+body .help-modal[open] {
+  display: block;
+}
+
+/* Ensure the help button has the same styling as the others */
+/* Help button styling */
+.help-button {
+  display: flex;
+  flex-direction: column;  /* Stack icon and text vertically */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white; /* not offwhite */
+  padding: 0.7em 2.64em; 
+  border-radius: 0.25em;
+  border: 0.2em solid white; /* not offwhite */
+  text-align: center;
+  box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  background-color: rgba(0, 0, 0, 25%);
+  cursor: pointer;
+  min-width: 2.7em;   /* Consistent size with others done*/
+  min-height: 4em;    /* Increase height for vertical alignment done*/
+}
+
+/* Styling the icon and text */
+.help-icon i {
+  font-size: 1.5em;     /* Larger icon done*/
+  margin-bottom: 0.3em; /* Add spacing below the icon final*/
+}
+
+.help-text {
+  font-size: 1.2em;   
+}
+
+/* Hover and Active Effects */
+.help-button:hover {
+  color: greenyellow; /* final */
+  border: 0.2em solid greenyellow; /* final */
+  transform: scale(1.2);
+}
+
+.help-button:active {
+  background-color: rgba(0, 0, 0, 50%);
+}

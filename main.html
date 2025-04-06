@@ -12,11 +12,11 @@
   <style> 
     .map-container {
       width: 100%;
-      height: 35em;
+      height: 600px;
     }
     iframe {
       width: 100%;
-      height: 35em;
+      height: 100%;
       border: none;
     }
   </style>
@@ -29,7 +29,6 @@
   </header>
   <div class="wrapper side-panel-open">
     <main>
-      <div>
         <!--<p>Map goes here!</p>-->
         <!-- Embed the map using an iframe width 1317px; height: 852px;-->
         <div class="map-container">
@@ -74,16 +73,32 @@
             
           </form>
         </dialog>
+
+        <dialog class="help-modal">
+          <h2>Help</h2>
+          <p>Welcome to the GIS Map! Here are some tips to help you navigate:</p>
+          <ul>
+            <li>📍 <strong>Add Pin:</strong> Click the "Add Pin" button to mark locations on the map.</li>
+            <li>🔍 <strong>Zoom:</strong> Use the Zoom In/Out buttons to explore the map.</li>
+            <li>🗺️ <strong>Map Layers:</strong> Toggle map layers to view different data points.</li>
+          </ul>
+          <button class="modal-close">Close</button>
+        </dialog>
+  
+
         <nav>
             <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
             <ul>
               <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i>
               <span>Login</span>
             </a></li>
-              <li><a><i class="fa-regular fa-circle-question"></i>
-              <span>Help</span>
-              </a></li>
-              <li><a href="main.html"><i class="fa-solid fa-house"></i>
+            <li>
+              <button class="help-button" type="button">
+                <div class="help-icon"><i class="fa-regular fa-circle-question"></i></div>
+                <div class="help-text">Help</div>
+              </button>
+            </li>
+            <li><a href="main.html"><i class="fa-solid fa-house"></i>
               <span>Main Page</span>
               </a></li>
               <li><button class="side-panel-toggle" type="button">
@@ -104,7 +119,6 @@
             </button></li>
             </ul>
         </nav>  
-      </div>
     </main>
     <div class="side-panel">
       <div>
