@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,11 +10,12 @@
   <!-- include javascript and css-->
   <link rel="stylesheet" href="styles/main.css">
   <script defer src="scripts/scripts.js"></script>
-  <style> 
+  <style>
     .map-container {
       width: 100%;
       height: 35em;
     }
+
     iframe {
       width: 100%;
       height: 35em;
@@ -27,13 +29,14 @@
     <!--This will be the main heading of the page so users know what page they're on-->
     <h1>Welcome to the Main Page</h1>
   </header>
+
   <div class="wrapper side-panel-open">
     <main>
       <div>
         <!--<p>Map goes here!</p>-->
         <!-- Embed the map using an iframe width 1317px; height: 852px;-->
         <div class="map-container">
-        <iframe src="map/index.html" ></iframe>
+          <iframe src="map/index.html"></iframe>
         </div>
         <dialog add-pin-modal>
           <form id="pin-form">
@@ -51,15 +54,11 @@
               </div>
               <div>
                 <label for="pin-description">Please provide a description:</label>
-                <textarea
-                  id="pin-description"
-                  name="pin-description"
-                  required
-                ></textarea>
+                <textarea id="pin-description" name="pin-description" required></textarea>
               </div>
               <div>
                 <label for="supplement">Upload images:</label><br>
-                <input type="file" id="supplement" name="supplement" accept="image/png, image/jpeg" required/>
+                <input type="file" id="supplement" name="supplement" accept="image/png, image/jpeg" required />
               </div>
               <div>
                 <label for="latitude">Latitude:</label>
@@ -71,74 +70,76 @@
               <button type="submit">Submit</button>
               <button class="modal-form-close">Cancel</button>
             </fieldset>
-            
           </form>
         </dialog>
         <nav>
-            <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
-            <ul>
+          <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
+          <ul>
+            <!-- Check if the user is logged in -->
+            <?php if (!isset($_SESSION['username'])): ?>
               <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i>
-              <span>Login</span>
-            </a></li>
-              <li><a><i class="fa-regular fa-circle-question"></i>
-              <span>Help</span>
+                <span>Login</span>
               </a></li>
-              <li><a href="main.html"><i class="fa-solid fa-house"></i>
-              <span>Main Page</span>
+            <?php else: ?>
+              <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
               </a></li>
-              <li><button class="side-panel-toggle" type="button">
+            <?php endif; ?>
+            <li><a><i class="fa-regular fa-circle-question"></i>
+                <span>Help</span>
+              </a></li>
+            <li><a href="main.html"><i class="fa-solid fa-house"></i>
+                <span>Main Page</span>
+              </a></li>
+            <li><button class="side-panel-toggle" type="button">
                 <span class="fa-solid fa-map"></span>
                 <span>Map Layers</span>
               </button></li>
-              <li><button class="zoom-out" type="button">
+            <li><button class="zoom-out" type="button">
                 <span class="fa-solid fa-magnifying-glass-minus"></span>
                 <span>Zoom Out</span>
               </button></li>
-              <li><button class="zoom-in" type="button">
+            <li><button class="zoom-in" type="button">
                 <span class="fa-solid fa-magnifying-glass-plus"></span>
                 <span>Zoom In</span>
               </button></li>
-              <li><button class="modal-form-open" type="button">
+            <li><button class="modal-form-open" type="button">
                 <span class="fa-solid fa-plus"></span>
                 <span>Add Pin</span>
-            </button></li>
-            </ul>
-        </nav>  
+              </button></li>
+          </ul>
+        </nav>
       </div>
     </main>
     <div class="side-panel">
       <div>
-      <img
-        src="images/Drag.png"
-        alt="The logo of the Drag and Spruce Lake Property Owners Association"
-        width="100"
-        height="100"
-      >
-      <button class="side-panel-close" type="button">
-        <span class="fa-solid fa-angles-left"></span>
-        <span>Close Menu</span>
-      </button>
-    </div>
-    <ol class='dropdown'>
-      <li>Map Layers:</li>
-      <li>Pins:
-        <ol>
+        <img src="images/Drag.png" alt="The logo of the Drag and Spruce Lake Property Owners Association" width="100"
+          height="100">
+        <button class="side-panel-close" type="button">
+          <span class="fa-solid fa-angles-left"></span>
+          <span>Close Menu</span>
+        </button>
+      </div>
+      <ol class='dropdown'>
+        <li>Map Layers:</li>
+        <li>Pins:
+          <ol>
             <li><label><input type="checkbox" data-layer="BirdWatchingPoints" checked> Bird Watching Points</label></li>
             <li><label><input type="checkbox" data-layer="BeaverDams" checked> Beaver Dams</label></li>
-        </ol>
-      </li>
-      <li>Routes:
-        <ol>
-          <li><label><input type="checkbox" data-layer="KayakingRoutes" checked> Kayaking Routes</label></li>
-        </ol>
-      </li>
-      <li>Layers:
-        <ol>
-          <li><label><input type="checkbox" data-layer="Hazards"checked> Hazards</label></li>
-          <li><label><input type="checkbox" data-layer="InvasiveSpecies"checked> Invasive Species</label></li>
-        </ol>
-      </li>
-    </ol>
+          </ol>
+        </li>
+        <li>Routes:
+          <ol>
+            <li><label><input type="checkbox" data-layer="KayakingRoutes" checked> Kayaking Routes</label></li>
+          </ol>
+        </li>
+        <li>Layers:
+          <ol>
+            <li><label><input type="checkbox" data-layer="Hazards" checked> Hazards</label></li>
+            <li><label><input type="checkbox" data-layer="InvasiveSpecies" checked> Invasive Species</label></li>
+          </ol>
+        </li>
+      </ol>
     </div>
   </div>
   <footer>
