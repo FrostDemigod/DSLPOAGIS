@@ -7,7 +7,7 @@
   <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
   <title>DSLPOA GIS</title>
   <!-- include javascript and css-->
-  <link rel="stylesheet" href="styles/DaCSSFile.css">
+  <link id="themeStylesheet" rel="stylesheet" href="styles/main.css">
   <script defer src="scripts/scripts.js"></script>
   <style> 
     .map-container {
@@ -25,7 +25,7 @@
 <body>
   <header>
     <!--This will be the main heading of the page so users know what page they're on-->
-    <h1>Welcome to the Main Page</h1>
+    <h1>Welcome to Drag and Spruce GIS Map</h1>
   </header>
   <div class="wrapper side-panel-open">
     <main>
@@ -117,38 +117,39 @@
         </nav>  
     </main>
     <div class="side-panel">
-      <div>
-      <img
-        src="images/Drag.png"
-        alt="The logo of the Drag and Spruce Lake Property Owners Association"
-        width="100"
-        height="100"
-      >
-      <button class="side-panel-close" type="button">
-        <span class="fa-solid fa-angles-left"></span>
-        <span>Close Menu</span>
-      </button>
-    </div>
-    <ol class='dropdown'>
-      <li>Map Layers:</li>
-      <li>Pins:
-        <ol>
-            <li><label><input type="checkbox" data-layer="BirdWatchingPoints" checked> Bird Watching Points</label></li>
+      <div class="drag">
+        <img src="images/Drag.png" alt="The logo of the Drag and Spruce Lake Property Owners Association" width="150"
+          height="150">
+        <br>
+        <button class="styler" onclick="cycleStyles()">Colourblind Filters</button>
+        <button class="side-panel-close" type="button">
+          <span class="fa-solid fa-angles-left"></span>
+          <span>Close Menu</span>
+        </button>
+      </div>
+      <ol class='dropdown'>
+        <li>
+          <button class="toggle">Pins:</button>
+          <ol class="content">
+            <li><label><input type="checkbox" data-layer="BirdWatchingPoints" checked> Bird Watching Points</label>
+            </li>
             <li><label><input type="checkbox" data-layer="BeaverDams" checked> Beaver Dams</label></li>
-        </ol>
-      </li>
-      <li>Routes:
-        <ol>
-          <li><label><input type="checkbox" data-layer="KayakingRoutes" checked> Kayaking Routes</label></li>
-        </ol>
-      </li>
-      <li>Layers:
-        <ol>
-          <li><label><input type="checkbox" data-layer="Hazards"checked> Hazards</label></li>
-          <li><label><input type="checkbox" data-layer="InvasiveSpecies"checked> Invasive Species</label></li>
-        </ol>
-      </li>
-    </ol>
+          </ol>
+        </li>
+        <li>
+          <button class="toggle">Routes:</button>
+          <ol class="content">
+            <li><label><input type="checkbox" data-layer="KayakingRoutes" checked> Kayaking Routes</label></li>
+          </ol>
+        </li>
+        <li>
+          <button class="toggle">Layers:</button>
+          <ol class="content">
+            <li><label><input type="checkbox" data-layer="Hazards" checked> Hazards</label></li>
+            <li><label><input type="checkbox" data-layer="InvasiveSpecies" checked> Invasive Species</label></li>
+          </ol>
+        </li>
+      </ol>
     </div>
   </div>
   <footer>

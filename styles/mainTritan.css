@@ -13,14 +13,14 @@
 
 /* Header Styles */
 header {
-  background-color: #0070c0; /* Header background color */
+  background-color: #008000; /* Header background color */
   color: white; /* Text color in the header */
   text-align: center;
   padding: 0.5em 0; /* Top and bottom padding */
   display: block;
   padding: 0.5em 2.4em; /* Left and right padding */
   border-radius: 0.35em; /* Rounded corners */
-  border: 0.15em solid #C0C0C0; /* Border style */
+  border: 0.15em solid #808080; /* Border style */
   margin: 0.15em 0; /* Top and bottom margin */
 }
 
@@ -122,8 +122,8 @@ nav button {
 nav a:hover,
 nav a:visited:hover,
 nav button:hover, i[class="fa-solid fa-pen-to-square"]:hover {
-  color: greenyellow;
-  border: 0.2em solid greenyellow;
+  color: #ff4500;
+  border: 0.2em solid #ff4500;
   transform: scale(1.2); /* Increase size on hover */
 }
 
@@ -172,8 +172,8 @@ nav button:active {
 
 /* Hover and Active Effects */
 .help-button:hover {
-  color: greenyellow; /* final */
-  border: 0.2em solid greenyellow; /* final */
+  color: #ff4500; /* final */
+  border: 0.2em solid #ff4500; /* final */
   transform: scale(1.2);
 }
 
@@ -209,7 +209,7 @@ nav button:active {
 
 /* Close/Cancel Buttons */
 .btn-close, .modal-form-close, .side-panel-close {
-  background-color: #dc3545;
+  background-color: #ff6347;
   color: white;
   padding: 0.5em 2.4em;
   border: none;
@@ -222,7 +222,7 @@ nav button:active {
 /* Close/Cancel Button Hovering */
 .btn-close:hover, .modal-form-close:hover, .side-panel-close:hover {
   border-radius: 0.25em;
-  background-color: #b12d2d;
+  background-color: #ff4500;
   transform: scale(1.2);
 }
 
@@ -275,7 +275,7 @@ nav {
 /* Padding for pin form */
 dialog fieldset {
   background-color: white;
-  border: 0.15em solid #0070c0;
+  border: 0.15em solid #008000;
   border-radius: 0.5em;
   padding: 1em 1em 1em 1em;
   margin-bottom: 0.75em;
@@ -290,7 +290,7 @@ form {
 /* Pin form label */
 dialog legend {
   margin-left: calc(50% - 2.75em);
-  background-color: #0070c0;
+  background-color: #008000;
   color: white;
   font-style: bold;
   font-size: 1.5em;
@@ -351,7 +351,7 @@ dialog .file-upload {
 
 /* Default form label */
 legend {
-  background-color: #0070c0;
+  background-color: #008000;
   color: white;
   font-style: italic;
   margin: 0 1em; /* no extra top/bottom margins */
@@ -363,7 +363,7 @@ legend {
 /* Padding and border on form segment */
 fieldset {
   background-color: white;
-  border: 0.15em solid #0070c0;
+  border: 0.15em solid #008000;
   border-radius: 0.5em;
   padding: 1em 7em 1em 1em;
   margin-bottom: 0.75em;
@@ -391,7 +391,7 @@ textarea, input[type="password"], select{
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus {
-  border-color: #0070c0;
+  border-color: #008000;
   box-shadow: 0 0 0.25em rgba(0, 112, 192, 0.5);
 }
 
@@ -407,7 +407,7 @@ input[type="file"] {
 
 /* Submit Buttons */
 input[type="submit"], button[type="submit"], .btn-next, .styler {
-  background-color: #0070c0;
+  background-color: #008000;
   color: white;
   padding: 0.5em 2.4em;
   border: none;
@@ -420,7 +420,7 @@ input[type="submit"], button[type="submit"], .btn-next, .styler {
 /* Submit Button Hovering */
 input[type="submit"]:hover, button[type="submit"]:hover, .btn-next:hover, .styler:hover{
   border-radius: 0.25em;
-  background-color: #005090;
+  background-color: #006400;
   transform: scale(1.2);
 }
 

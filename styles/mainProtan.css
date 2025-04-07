@@ -13,14 +13,14 @@
 
 /* Header Styles */
 header {
-  background-color: #0070c0; /* Header background color */
+  background-color: #005ab5; /* Header background color */
   color: white; /* Text color in the header */
   text-align: center;
   padding: 0.5em 0; /* Top and bottom padding */
   display: block;
   padding: 0.5em 2.4em; /* Left and right padding */
   border-radius: 0.35em; /* Rounded corners */
-  border: 0.15em solid #C0C0C0; /* Border style */
+  border: 0.15em solid #909090; /* Border style */
   margin: 0.15em 0; /* Top and bottom margin */
 }
 
@@ -57,6 +57,27 @@ body {
  display: initial;
 }
 
+.drag {
+  text-align: center;
+}
+
+.dropdown {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dropdown .toggle {
+  background: lightgoldenrodyellow;
+  border: 0.1em solid black;
+  border-radius: 0.25em;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin: 0.2em 0;
+}
+
+.dropdown .content {
+  margin-left: 1em;
+}
 
 /* ---NAVIGATION BAR--- */
 
@@ -101,8 +122,8 @@ nav button {
 nav a:hover,
 nav a:visited:hover,
 nav button:hover, i[class="fa-solid fa-pen-to-square"]:hover {
-  color: greenyellow;
-  border: 0.2em solid greenyellow;
+  color: #7cfdb3;
+  border: 0.2em solid #7cfdb3;
   transform: scale(1.2); /* Increase size on hover */
 }
 
@@ -113,6 +134,9 @@ nav button:active {
   background-color:rgba(0, 0, 0, 50%);
   /* Change the background color on click */
 }
+
+
+/* ---HELP MODAL--- */
 
 /* Ensure the help button has the same styling as the others */
 /* Help button styling */
@@ -148,8 +172,8 @@ nav button:active {
 
 /* Hover and Active Effects */
 .help-button:hover {
-  color: greenyellow; /* final */
-  border: 0.2em solid greenyellow; /* final */
+  color: #7cfdb3; /* final */
+  border: 0.2em solid #7cfdb3; /* final */
   transform: scale(1.2);
 }
 
@@ -184,19 +208,19 @@ nav button:active {
 }
 
 /* Close/Cancel Buttons */
-.btn-close, .modal-form-close {
-  background-color: #dc3545;
+.btn-close, .modal-form-close, .side-panel-close {
+  background-color: #b14646;
   color: white;
   padding: 0.5em 2.4em;
   border: none;
   border-radius: 0.25em;
   cursor: pointer;
   text-transform: uppercase;
-  margin-top: 0.5em;
+  margin: 0.5em 0.1em 0.1em; 
 }
 
 /* Close/Cancel Button Hovering */
-.btn-close:hover, .modal-form-close:hover{
+.btn-close:hover, .modal-form-close:hover, .side-panel-close:hover {
   border-radius: 0.25em;
   background-color: #b12d2d;
   transform: scale(1.2);
@@ -251,7 +275,7 @@ nav {
 /* Padding for pin form */
 dialog fieldset {
   background-color: white;
-  border: 0.15em solid #0070c0;
+  border: 0.15em solid #005ab5;
   border-radius: 0.5em;
   padding: 1em 1em 1em 1em;
   margin-bottom: 0.75em;
@@ -266,7 +290,7 @@ form {
 /* Pin form label */
 dialog legend {
   margin-left: calc(50% - 2.75em);
-  background-color: #0070c0;
+  background-color: #005ab5;
   color: white;
   font-style: bold;
   font-size: 1.5em;
@@ -327,7 +351,7 @@ dialog .file-upload {
 
 /* Default form label */
 legend {
-  background-color: #0070c0;
+  background-color: #005ab5;
   color: white;
   font-style: italic;
   margin: 0 1em; /* no extra top/bottom margins */
@@ -339,7 +363,7 @@ legend {
 /* Padding and border on form segment */
 fieldset {
   background-color: white;
-  border: 0.15em solid #0070c0;
+  border: 0.15em solid #005ab5;
   border-radius: 0.5em;
   padding: 1em 7em 1em 1em;
   margin-bottom: 0.75em;
@@ -352,7 +376,6 @@ button label {
 }
 
 /* ---INPUT FIELDS--- */
-
 
 /* Text Inputs + Dropdown */
 input[type="text"],
@@ -368,7 +391,7 @@ textarea, input[type="password"], select{
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus {
-  border-color: #0070c0;
+  border-color: #005ab5;
   box-shadow: 0 0 0.25em rgba(0, 112, 192, 0.5);
 }
 
@@ -383,21 +406,21 @@ input[type="file"] {
 }
 
 /* Submit Buttons */
-input[type="submit"], button[type="submit"], .btn-next {
-  background-color: #0070c0;
+input[type="submit"], button[type="submit"], .btn-next, .styler {
+  background-color: #005ab5;
   color: white;
   padding: 0.5em 2.4em;
   border: none;
   border-radius: 0.25em;
   cursor: pointer;
   text-transform: uppercase;
-  margin-top: 0.5em;
+  margin: 0.5em 0.1em 0.1em; 
 }
 
 /* Submit Button Hovering */
-input[type="submit"]:hover, button[type="submit"]:hover, .btn-next:hover{
+input[type="submit"]:hover, button[type="submit"]:hover, .btn-next:hover, .styler:hover{
   border-radius: 0.25em;
-  background-color: #005090;
+  background-color: #004080;
   transform: scale(1.2);
 }
 

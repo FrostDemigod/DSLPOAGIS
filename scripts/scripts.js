@@ -112,7 +112,7 @@ const helpMessages = [
     img: "images/Zoom.png"
   },
   {
-    text: "Click the 'Add Pin' button to mark specific locations. You can add a description, upload an image, and save your pin for future reference once you have an account.", /* final */
+    text: "If you have an account, you can click the 'Add Pin' button to mark specific locations. You can add a description, upload an image.", /* final */
     img: "images/Add.png"
   },
   {
@@ -219,3 +219,21 @@ function showHelpDialog() {
 helpButton.addEventListener("click", () => {
   showEmojiHelp();
 });
+
+// Toggle collapsible lists
+document.querySelectorAll('.toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const content = button.nextElementSibling;
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+  });
+});
+
+
+const stylesheets = ['styles/main.css', 'styles/mainProtan.css', 'styles/mainDeutan.css', 'styles/mainTritan.css'];
+let currentIndex = 0;
+
+function cycleStyles() {
+    const stylesheet = document.getElementById('themeStylesheet');
+    currentIndex = (currentIndex + 1) % stylesheets.length; // Cycle to the next index
+    stylesheet.setAttribute('href', stylesheets[currentIndex]);
+}
