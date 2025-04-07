@@ -52,7 +52,7 @@ body {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
 }
 
-/* Set Side panel to be open on page load*/
+/* Set Side panel to be open on page load */
 .side-panel-open .side-panel {
  display: initial;
 }
@@ -114,6 +114,99 @@ nav button:active {
   /* Change the background color on click */
 }
 
+/* Ensure the help button has the same styling as the others */
+/* Help button styling */
+.help-button {
+  display: flex;
+  flex-direction: column;  /* Stack icon and text vertically */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white; /* not offwhite */
+  padding: 0.7em 2.64em; 
+  border-radius: 0.25em;
+  border: 0.2em solid white; /* not offwhite */
+  text-align: center;
+  box-shadow: 0.05em 0.1em 0.15em rgba(0, 0, 0, 25%);
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  background-color: rgba(0, 0, 0, 25%);
+  cursor: pointer;
+  min-width: 2.7em;   /* Consistent size with others done*/
+  min-height: 4em;    /* Increase height for vertical alignment done*/
+}
+
+/* Styling the icon and text */
+.help-icon i {
+  font-size: 1.5em;     /* Larger icon done*/
+  margin-bottom: 0.3em; /* Add spacing below the icon final*/
+}
+
+.help-text {
+  font-size: 1.2em;   
+}
+
+/* Hover and Active Effects */
+.help-button:hover {
+  color: greenyellow; /* final */
+  border: 0.2em solid greenyellow; /* final */
+  transform: scale(1.2);
+}
+
+.help-button:active {
+  background-color: rgba(0, 0, 0, 50%);
+}
+
+/* Help Modal Styles */
+.help-modal {
+  width: 50%;
+  max-width: 600px;
+  padding: 2em;
+  background-color: white;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.help-modal h2 {
+  font-size: 2rem;
+  margin-bottom: 1em;
+}
+
+.help-modal p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Close/Cancel Buttons */
+.btn-close, .modal-form-close {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.5em 2.4em;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 0.5em;
+}
+
+/* Close/Cancel Button Hovering */
+.btn-close:hover, .modal-form-close:hover{
+  border-radius: 0.25em;
+  background-color: #b12d2d;
+  transform: scale(1.2);
+}
+
+body .help-modal[open] {
+  display: block;
+}
+
+
 /* List Styling */
 nav ul {
   display: flex;
@@ -136,6 +229,35 @@ nav {
 
 /* ---FORMS--- */
 
+
+.geo-container, .submit-container  {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em;
+}
+
+.mapcoord-container {
+  height: 20em;
+  width: 20em;
+}
+
+.latlong-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  justify-content: center;
+}
+
+
+/* Padding for pin form */
+dialog fieldset {
+  background-color: white;
+  border: 0.15em solid #0070c0;
+  border-radius: 0.5em;
+  padding: 1em 1em 1em 1em;
+  margin-bottom: 0.75em;
+}
+
 /* Form padding */
 form {
   margin: 0.5em;
@@ -144,7 +266,7 @@ form {
 
 /* Pin form label */
 dialog legend {
-  margin-left: calc(50% - 1em);
+  margin-left: calc(50% - 2.75em);
   background-color: #0070c0;
   color: white;
   font-style: bold;
@@ -153,6 +275,53 @@ dialog legend {
   border-radius: 0.35em;
   font-weight: 800;
 }
+
+dialog label {
+  display: block;
+  font-size: 1.6rem;
+  padding: 0.3em 0.35em 0.3em 0.0em;
+  margin: 0.4em 0.3em 0.1em 0em;
+}
+
+dialog input[type="text"], dialog select, dialog textarea {
+  width: 90%;
+  max-width: 40em;
+  max-height: 10em;
+}
+
+dialog .file-upload {
+  text-decoration: none;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6em 2.64em;
+  border-radius: 0.25em;
+  border: 0.15em solid black;
+  text-align: center;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  background-color: rgba(0, 0, 0, 25%);
+  cursor: pointer;
+  width: 80%;
+  height: 15em;
+}
+
+.file-upload .fa-upload {
+  font-size: 5em; /* Size for the icon */
+  padding: 0.2em;
+}
+
+.file-upload input[type="file"] {
+  display: none; /* Hides the original file input */
+}
+
+.file-upload:hover {
+  background-color: #005ea0; /* Hover effect */
+}
+
+
 
 /* Default form label */
 legend {
@@ -175,16 +344,10 @@ fieldset {
 }
 
 /* Button Labels */
-label {
+button label {
   display: inline-block;
   margin-bottom: 0.5em;
 }
-
-/* Probably dont need this */
-/* fieldset div label, fieldset div {
-  margin: 0.2em;
-} */
-
 
 /* ---INPUT FIELDS--- */
 
@@ -218,7 +381,7 @@ input[type="file"] {
 }
 
 /* Submit Buttons */
-input[type="submit"], button[type="submit"] {
+input[type="submit"], button[type="submit"], .btn-next {
   background-color: #0070c0;
   color: white;
   padding: 0.5em 2.4em;
@@ -230,7 +393,7 @@ input[type="submit"], button[type="submit"] {
 }
 
 /* Submit Button Hovering */
-input[type="submit"]:hover, button[type="submit"]:hover{
+input[type="submit"]:hover, button[type="submit"]:hover, .btn-next:hover{
   border-radius: 0.25em;
   background-color: #005090;
   transform: scale(1.2);

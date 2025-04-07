@@ -7,7 +7,7 @@
   <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
   <title>DSLPOA GIS</title>
   <!-- include javascript and css-->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/DaCSSFile.css">
   <script defer src="scripts/scripts.js"></script>
   <style> 
     .map-container {
@@ -39,7 +39,7 @@
             <fieldset>
               <legend>Add a Pin</legend>
               <div>
-                <label for="category">What would you like to add?</label><br>
+                <label for="category">What would you like to add?</label>
                 <select name="category" id="category" required>
                   <option value="">Please Choose One</option>
                   <option value="birdwatch">Birdwatching Point</option>
@@ -57,34 +57,33 @@
                 ></textarea>
               </div>
               <div>
-                <label for="supplement">Upload images:</label><br>
-                <input type="file" id="supplement" name="supplement" accept="image/png, image/jpeg" required/>
+                <label for="supplement">Upload images:</label>
+                <label class="file-upload">
+                  <span class="fa-solid fa-upload"></span>
+                  <br>
+                  <span>Choose a File...</span>
+                  <input type="file" id="supplement" name="supplement" accept="image/png, image/jpeg" required/>
+                </label>
               </div>
-              <div>
-                <label for="latitude">Latitude:</label>
-                <input type="text" id="latitude" name="latitude" required>
-                <label for="longitude">Longitude:</label>
-                <input type="text" id="longitude" name="longitude" required>
-                <button type="button" class="use-loc">Use Current Location</button>
+              <div class="geo-container">
+                <div class="mapcoord-container">
+                  <iframe src="baseMap/index.html" ></iframe>
+                </div>
+                <div class="latlong-container">
+                  <label for="latitude">Latitude:</label>
+                  <input type="text" id="latitude" name="latitude" required>
+                  <label for="longitude">Longitude:</label>
+                  <input type="text" id="longitude" name="longitude" required>
+                  <button type="button" class="use-loc">Use Current Location</button>
+                  <div class="submit-container">
+                    <button type="submit">Submit</button>
+                    <button class="modal-form-close">Cancel</button>
+                  </div>
+                </div>
               </div>
-              <button type="submit">Submit</button>
-              <button class="modal-form-close">Cancel</button>
             </fieldset>
-            
           </form>
         </dialog>
-
-        <dialog class="help-modal">
-          <h2>Help</h2>
-          <p>Welcome to the GIS Map! Here are some tips to help you navigate:</p>
-          <ul>
-            <li>📍 <strong>Add Pin:</strong> Click the "Add Pin" button to mark locations on the map.</li>
-            <li>🔍 <strong>Zoom:</strong> Use the Zoom In/Out buttons to explore the map.</li>
-            <li>🗺️ <strong>Map Layers:</strong> Toggle map layers to view different data points.</li>
-          </ul>
-          <button class="modal-close">Close</button>
-        </dialog>
-  
 
         <nav>
             <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->

@@ -137,8 +137,8 @@ function showEmojiHelp() {
       </div>
       <p>Explore the map, add pins, and zoom in or out!</p>
       <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
-        <button class="btn-close" style="padding: 0.5rem 1.5rem; background: #dc3545; color: white; border: none; cursor: pointer;">Close</button>
-        <button class="btn-next" style="padding: 0.5rem 1.5rem; background: #007bff; color: white; border: none; cursor: pointer;">Next</button>
+        <button class="btn-close">Close</button>
+        <button class="btn-next">Next</button>
       </div>
     </div>
   `;
@@ -171,8 +171,8 @@ function showHelpDialog() {
         <p>${helpMessages[currentMessageIndex].text}</p>
         <img src="${helpMessages[currentMessageIndex].img}" alt="Help Image" style="width: 100%; height: auto; margin-top: 1rem;">
         <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
-          <button class="btn-close" style="padding: 0.5rem 1.5rem; background: #dc3545; color: white; border: none; cursor: pointer;">Close</button>
-          <button class="btn-next" style="padding: 0.5rem 1.5rem; background: #007bff; color: white; border: none; cursor: pointer;">Next</button>
+          <button class="btn-close">Close</button>
+          <button class="btn-next">Next</button>
         </div>
       </div>
     `;
