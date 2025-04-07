@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($success) {
                 // Redirect or notify user
-                header("Location: ../login.html");
+                header("Location: login.php?reset=success");
                 exit();
             } else {
                 $errors['reset'] = "An error occurred while updating the password. Please try again.";

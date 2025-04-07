@@ -11,6 +11,18 @@
     <!-- include javascript and css-->
     <link rel="stylesheet" href="styles/main.css">
     <script defer src="scripts/scripts.js"></script>
+    
+    <script>
+      // Function to show an alert if there's an error message in the URL
+      window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        
+        if (error) {
+          alert(decodeURIComponent(error));  // Show the error message in an alert
+        }
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -19,9 +31,11 @@
     </header>
     <main>
       No account? You can <a href="register.html">sign up now!</a>
-      <form action="login.php" method="post" class="login">
+      
+      <form action="A4 FrontEnd (JS)/login.php" method="post" class="login">
         <fieldset>
           <legend>Login Information</legend>
+          
           <div>
             <label for="username">Username:</label>
             <input
@@ -33,6 +47,7 @@
               required
             >
           </div>
+          
           <div>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
@@ -43,27 +58,28 @@
             <input type="checkbox" id="remember_me" name="remember_me">
           </div>
         </fieldset>
+        
         <div>
           <a href="forgot.html">Forgot Password?</a>
         </div>
+        
         <input type="submit" value="Login">
+        
+        <!-- Display error message if there is one -->
+        <?php if (isset($_GET['error'])): ?>
+          <p style="color: red; font-weight: bold;"><?= htmlspecialchars(urldecode($_GET['error'])) ?></p>
+        <?php endif; ?>
       </form>
     </main>
     <footer>
       <nav>
         <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
         <ul>
-          <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i>
-          <span>Login</span>
-        </a></li>
-          <li><a><i class="fa-regular fa-circle-question"></i>
-          <span>Help</span>
-          </a></li>
-          <li><a href="main.html"><i class="fa-solid fa-house"></i>
-          <span>Main Page</span>
-          </a></li>
+          <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i><span>Login</span></a></li>
+          <li><a><i class="fa-regular fa-circle-question"></i><span>Help</span></a></li>
+          <li><a href="main.html"><i class="fa-solid fa-house"></i><span>Main Page</span></a></li>
         </ul>
-    </nav>   
+      </nav>
     </footer>
   </body>
 </html>
