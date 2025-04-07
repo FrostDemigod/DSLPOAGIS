@@ -8,7 +8,7 @@ function fnc_coalesce(values, context) {
         if (values[i] !== null) {
             return values[i];
         }
-        
+
     }
     return 'ERROR';
 };
@@ -40,11 +40,11 @@ function fnc_abs(values, context) {
 };
 
 function fnc_degrees(values, context) {
-    return values[0] * (180/Math.PI);
+    return values[0] * (180 / Math.PI);
 };
 
 function fnc_radians(values, context) {
-    return values[0] * (Math.PI/180);
+    return values[0] * (Math.PI / 180);
 };
 
 function fnc_sqrt(values, context) {
@@ -100,11 +100,11 @@ function fnc_round(values, context) {
 };
 
 function fnc_rand(values, context) {
-    return Math.floor(Math.random()*(values[1]-values[0]+1)+values[0]);
+    return Math.floor(Math.random() * (values[1] - values[0] + 1) + values[0]);
 };
 
 function fnc_randf(values, context) {
-    return Math.random()*(values[1]-values[0]+1)+values[0];
+    return Math.random() * (values[1] - values[0] + 1) + values[0];
 };
 
 function fnc_max(values, context) {
