@@ -66,6 +66,20 @@ function getCoords() {
   }
 }
 
+// Listen for coordinate messages
+window.addEventListener('message', function(event) {
+
+  // Get the coordinates from the message
+  var data = event.data;
+
+  // Check if the message contains the latitude and longitude
+  if (data.lat && data.lng) {
+      // Fill out the form fields with the coordinates
+      document.getElementById('latitude').value = data.lat;
+      document.getElementById('longitude').value = data.lng;
+  }
+});
+
 // Zoom in and zoom out functionality for map and main.html
 document.querySelector('.zoom-in').addEventListener('click', () => {
   const iframe = document.querySelector('.map-container iframe');

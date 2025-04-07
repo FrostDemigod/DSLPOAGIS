@@ -229,7 +229,6 @@ nav {
 
 /* ---FORMS--- */
 
-
 .geo-container, .submit-container  {
   display: flex;
   flex-direction: row;
@@ -318,10 +317,13 @@ dialog .file-upload {
 }
 
 .file-upload:hover {
-  background-color: #005ea0; /* Hover effect */
+  background-color: rgba(0, 0, 0, 15%); /* Hover effect */
 }
 
-
+.use-loc {
+  margin: 0.5em 0.5em 0.5em 0em;
+  padding: 0.5em;
+}
 
 /* Default form label */
 legend {

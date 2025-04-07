@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
         #map {
-            width: 25em;
-            height: 25em;
+            width: 100%;
+            height: 30em;
         }
         </style>
         <title></title>
@@ -52,6 +52,18 @@
          }
          return tempDiv.innerHTML;
         }
+
+        // Add a click event listener to the map
+        map.on('click', function(e) {
+        // Get the latitude and longitude from the event object
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        // Send the coordinates to the parent site using postMessage
+        window.parent.postMessage({ lat: lat, lng: lng }, '*');
+        });
+
+        
         // add class to format popup if it contains media
 		function addClassToPopupIfMedia(content, popup) {
 			var tempDiv = document.createElement('div');
