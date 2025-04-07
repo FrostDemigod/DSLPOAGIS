@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute([$gender, $username, $email, $hashedPassword]);
 
         // Redirect to login.php instead of createaccount.php
-        header("Location: login.php");
+        header("Location: ../login.html");
         exit();
     }
 }
