@@ -81,9 +81,10 @@
                 <span>Login</span>
               </a></li>
             <?php else: ?>
-              <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
-              </a></li>
+                <li><a href="A4 FrontEnd (JS)/logout.php">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a></li>
             <?php endif; ?>
             <li><a><i class="fa-regular fa-circle-question"></i>
                 <span>Help</span>
@@ -103,10 +104,14 @@
                 <span class="fa-solid fa-magnifying-glass-plus"></span>
                 <span>Zoom In</span>
               </button></li>
-            <li><button class="modal-form-open" type="button">
-                <span class="fa-solid fa-plus"></span>
-                <span>Add Pin</span>
-              </button></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li>
+                        <button class="modal-form-open" type="button">
+                            <span class="fa-solid fa-plus"></span>
+                            <span>Add Pin</span>
+                        </button>
+                    </li>
+                <?php endif; ?>
           </ul>
         </nav>
       </div>

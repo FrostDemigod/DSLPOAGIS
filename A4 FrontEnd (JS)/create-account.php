@@ -57,7 +57,7 @@ try {
             $stmt = $pdo->prepare($query);
             $stmt->execute([$username, $email, $hashedPassword]);
 
-            header("Location: login.php");
+            header("Location: ../login.html");
             exit();
         }
     }
