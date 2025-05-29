@@ -1,86 +1,88 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
-        <link rel="stylesheet" href="css/qgis2web.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
-        <style>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+    <style>
         #map {
             width: 100%;
             height: 50em;
         }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div id="map">
-        </div>
-        <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
-        <script src="js/L.Control.Layers.Tree.min.js"></script>
-        <script src="js/leaflet-svg-shape-markers.min.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="data/natural_water_1.js"></script>
-        <script src="data/waterway_dam_2.js"></script>
-        <script src="data/CanoeRoute_3.js"></script>
-        <script src="data/Nav_buoy_4.js"></script>
-        <script src="data/water_depth_dragLake_5.js"></script>
-        <script src="data/Hazards_6.js"></script>
-        <script src="data/BirdWatchingPoints_7.js"></script>
-        <script>
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <div id="map">
+    </div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/L.Control.Layers.Tree.min.js"></script>
+    <script src="js/leaflet-svg-shape-markers.min.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+    <script src="data/natural_water_1.js"></script>
+    <script src="data/waterway_dam_2.js"></script>
+    <script src="data/CanoeRoute_3.js"></script>
+    <script src="data/Nav_buoy_4.js"></script>
+    <script src="data/water_depth_dragLake_5.js"></script>
+    <script src="data/Hazards_6.js"></script>
+    <script src="data/BirdWatchingPoints_7.js"></script>
+    <script>
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
-            zoomControl:false, maxZoom:28, minZoom:12
-        }).fitBounds([[45.04008302247248,-78.49138124977759],[45.109190449972736,-78.33998570144514]]);
+            zoomControl: false, maxZoom: 28, minZoom: 12
+        }).fitBounds([[45.04008302247248, -78.49138124977759], [45.109190449972736, -78.33998570144514]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
         // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
-         var tempDiv = document.createElement('div');
-         tempDiv.innerHTML = content;
-         var rows = tempDiv.querySelectorAll('tr');
-         for (var i = 0; i < rows.length; i++) {
-             var td = rows[i].querySelector('td.visible-with-data');
-             var key = td ? td.id : '';
-             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
-                 rows[i].parentNode.removeChild(rows[i]);
-             }
-         }
-         return tempDiv.innerHTML;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            var rows = tempDiv.querySelectorAll('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var td = rows[i].querySelector('td.visible-with-data');
+                var key = td ? td.id : '';
+                if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                    rows[i].parentNode.removeChild(rows[i]);
+                }
+            }
+            return tempDiv.innerHTML;
         }
         // add class to format popup if it contains media
-		function addClassToPopupIfMedia(content, popup) {
-			var tempDiv = document.createElement('div');
-			tempDiv.innerHTML = content;
-			if (tempDiv.querySelector('td img')) {
-				popup._contentNode.classList.add('media');
-					// Delay to force the redraw
-					setTimeout(function() {
-						popup.update();
-					}, 10);
-			} else {
-				popup._contentNode.classList.remove('media');
-			}
-		}
+        function addClassToPopupIfMedia(content, popup) {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            if (tempDiv.querySelector('td img')) {
+                popup._contentNode.classList.add('media');
+                // Delay to force the redraw
+                setTimeout(function () {
+                    popup.update();
+                }, 10);
+            } else {
+                popup._contentNode.classList.remove('media');
+            }
+        }
         /*var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);*/
@@ -102,11 +104,11 @@
         map.addLayer(layer_OSMStandard_0);
         function pop_natural_water_1(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -164,10 +166,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_natural_water_1_0() {
@@ -178,7 +180,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(104,227,255,1.0)',
@@ -201,11 +203,11 @@
         map.addLayer(layer_natural_water_1);
         function pop_waterway_dam_2(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -230,10 +232,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_waterway_dam_2_0() {
@@ -244,7 +246,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(19,19,19,1.0)',
@@ -267,11 +269,11 @@
         map.addLayer(layer_waterway_dam_2);
         function pop_CanoeRoute_3(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -287,10 +289,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_CanoeRoute_3_0() {
@@ -315,11 +317,11 @@
         map.addLayer(layer_CanoeRoute_3);
         function pop_Nav_buoy_4(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -335,10 +337,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_Nav_buoy_4_0() {
@@ -380,11 +382,11 @@
         map.addLayer(layer_Nav_buoy_4);
         function pop_water_depth_dragLake_5(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -419,10 +421,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_water_depth_dragLake_5_0() {
@@ -455,11 +457,11 @@
         map.setMaxBounds(layer_water_depth_dragLake_5.getBounds());
         function pop_Hazards_6(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -484,10 +486,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_Hazards_6_0() {
@@ -528,11 +530,11 @@
         map.addLayer(layer_Hazards_6);
         function pop_BirdWatchingPoints_7(feature, layer) {
             layer.on({
-                mouseout: function(e) {
+                mouseout: function (e) {
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
-                        layer.eachLayer(function(feature){
+                        layer.eachLayer(function (feature) {
                             feature.closePopup()
                         });
                     }
@@ -552,10 +554,10 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
 
         function style_BirdWatchingPoints_7_0() {
@@ -604,20 +606,22 @@
             title: 'Testing'
         }).addTo(map);
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
+            .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
+            .title += 'Search for a place';
         var overlaysTree = [
-            {label: '<img src="legend/BirdWatchingPoints_7.png" /> BirdWatchingPoints', layer: layer_BirdWatchingPoints_7},
-            {label: '<img src="legend/Hazards_6.png" /> Hazards', layer: layer_Hazards_6},
-            {label: '<img src="legend/water_depth_dragLake_5.png" /> water_depth_dragLake', layer: layer_water_depth_dragLake_5},
-            {label: '<img src="legend/Nav_buoy_4.png" /> Nav_buoy', layer: layer_Nav_buoy_4},
-            {label: '<img src="legend/CanoeRoute_3.png" /> CanoeRoute', layer: layer_CanoeRoute_3},
-        {label: '<b>Water_Bodies</b>', selectAllCheckbox: true, children: [
-            {label: '<img src="legend/waterway_dam_2.png" /> waterway_dam', layer: layer_waterway_dam_2},
-            {label: '<img src="legend/natural_water_1.png" /> natural_water', layer: layer_natural_water_1},]},
-            {label: "OSM Standard", layer: layer_OSMStandard_0},]
-        var lay = L.control.layers.tree(null, overlaysTree,{
+            { label: '<img src="legend/BirdWatchingPoints_7.png" /> BirdWatchingPoints', layer: layer_BirdWatchingPoints_7 },
+            { label: '<img src="legend/Hazards_6.png" /> Hazards', layer: layer_Hazards_6 },
+            { label: '<img src="legend/water_depth_dragLake_5.png" /> water_depth_dragLake', layer: layer_water_depth_dragLake_5 },
+            { label: '<img src="legend/Nav_buoy_4.png" /> Nav_buoy', layer: layer_Nav_buoy_4 },
+            { label: '<img src="legend/CanoeRoute_3.png" /> CanoeRoute', layer: layer_CanoeRoute_3 },
+            {
+                label: '<b>Water_Bodies</b>', selectAllCheckbox: true, children: [
+                    { label: '<img src="legend/waterway_dam_2.png" /> waterway_dam', layer: layer_waterway_dam_2 },
+                    { label: '<img src="legend/natural_water_1.png" /> natural_water', layer: layer_natural_water_1 },]
+            },
+            { label: "OSM Standard", layer: layer_OSMStandard_0 },]
+        var lay = L.control.layers.tree(null, overlaysTree, {
             //namedToggle: true,
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
@@ -629,63 +633,63 @@
         lay.addTo(map);
         setBounds();
         var i = 0;
-        layer_natural_water_1.eachLayer(function(layer) {
+        layer_natural_water_1.eachLayer(function (layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_natural_water_1'});
+            layer.bindTooltip((layer.feature.properties['name'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['name']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_natural_water_1' });
             labels.push(layer);
             totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
         });
         var i = 0;
-        layer_waterway_dam_2.eachLayer(function(layer) {
+        layer_waterway_dam_2.eachLayer(function (layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_waterway_dam_2'});
+            layer.bindTooltip((layer.feature.properties['name'] !== null ? String('<div style="color: #000000; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['name']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_waterway_dam_2' });
             labels.push(layer);
             totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
         });
         var i = 0;
-        layer_water_depth_dragLake_5.eachLayer(function(layer) {
+        layer_water_depth_dragLake_5.eachLayer(function (layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['DEPTH'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['DEPTH']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_water_depth_dragLake_5'});
+            layer.bindTooltip((layer.feature.properties['DEPTH'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['DEPTH']) + '</div>' : ''), { permanent: true, offset: [-0, -16], className: 'css_water_depth_dragLake_5' });
             labels.push(layer);
             totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
+            layer.added = true;
+            addLabel(layer, i);
+            i++;
         });
-        resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
-        map.on("zoomend", function(){
-            resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
+        resetLabels([layer_natural_water_1, layer_waterway_dam_2, layer_water_depth_dragLake_5, layer_Hazards_6, layer_BirdWatchingPoints_7]);
+        map.on("zoomend", function () {
+            resetLabels([layer_natural_water_1, layer_waterway_dam_2, layer_water_depth_dragLake_5, layer_Hazards_6, layer_BirdWatchingPoints_7]);
         });
-        map.on("layeradd", function(){
-            resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
+        map.on("layeradd", function () {
+            resetLabels([layer_natural_water_1, layer_waterway_dam_2, layer_water_depth_dragLake_5, layer_Hazards_6, layer_BirdWatchingPoints_7]);
         });
-        map.on("layerremove", function(){
-            resetLabels([layer_natural_water_1,layer_waterway_dam_2,layer_water_depth_dragLake_5,layer_Hazards_6,layer_BirdWatchingPoints_7]);
+        map.on("layerremove", function () {
+            resetLabels([layer_natural_water_1, layer_waterway_dam_2, layer_water_depth_dragLake_5, layer_Hazards_6, layer_BirdWatchingPoints_7]);
         });
 
         // Functions to add zoom in and out using zoomIn and zoomOut built-in fucnctions from Leaflet
-        function zoomIn(){
+        function zoomIn() {
             map.zoomIn();
         }
-        function zoomOut(){
+        function zoomOut() {
             map.zoomOut();
         }
-        // listen for messages from main.html page
+        // listen for messages from index.html page
         window.addEventListener('message', (event) => {
             if (event.data === 'zoomIn') {
                 zoomIn();
@@ -694,6 +698,7 @@
             }
         });
 
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>

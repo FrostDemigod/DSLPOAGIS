@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/05ad49203b.js" crossorigin="anonymous"></script>
+  <title>DSLPOA GIS</title>
+  <!-- include javascript and css-->
+  <link id="themeStylesheet" rel="stylesheet" href="styles/main.css">
+  <script defer src="scripts/scripts.js"></script>
+  <style> 
+    .map-container {
+      width: 100%;
+      height: 600px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!--This will be the main heading of the page so users know what page they're on-->
+    <h1>Drag and Spruce GIS Map</h1>
+  </header>
+  <div class="wrapper side-panel-open">
+    <main>
+        <!--<p>Map goes here!</p>-->
+        <!-- Embed the map using an iframe width 1317px; height: 852px;-->
+        <div class="map-container">
+        <iframe src="map/index.html" ></iframe>
+        </div>
+        <dialog add-pin-modal>
+          <form id="pin-form">
+            <fieldset>
+              <legend>Add a Pin</legend>
+              <div>
+                <label for="category">What would you like to add?</label>
+                <select name="category" id="category" required>
+                  <option value="">Please Choose One</option>
+                  <option value="birdwatch">Birdwatching Point</option>
+                  <option value="kayak">Kayaking Route</option>
+                  <option value="hazard">Hazard</option>
+                  <option value="invspec">Invasive Species</option>
+                </select>
+              </div>
+              <div>
+                <label for="pin-description">Please provide a description:</label>
+                <textarea
+                  id="pin-description"
+                  name="pin-description"
+                  required
+                ></textarea>
+              </div>
+              <div>
+                <label for="supplement">Upload images:</label>
+                <label class="file-upload">
+                  <span class="fa-solid fa-upload"></span>
+                  <br>
+                  <span>Choose a File...</span>
+                  <input type="file" id="supplement" name="supplement" accept="image/png, image/jpeg" required/>
+                </label>
+              </div>
+              <div class="geo-container">
+                <div class="mapcoord-container">
+                  <iframe src="baseMap/index.html" ></iframe>
+                </div>
+                <div class="latlong-container">
+                  <label for="latitude">Latitude:</label>
+                  <input type="text" id="latitude" name="latitude" required>
+                  <label for="longitude">Longitude:</label>
+                  <input type="text" id="longitude" name="longitude" required>
+                  <button type="button" class="use-loc">Use Current Location</button>
+                  <div class="submit-container">
+                    <button type="submit">Submit</button>
+                    <button class="modal-form-close">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </dialog>
+
+        <nav>
+            <!-- The following nav will be a bar at the middle of the webpage so users can visit the desired page-->
+            <ul>
+              <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i><span>Login</span></a></li>
+              <!-- Added Main Page link -->
+              <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Main Page</span></a></li>
+               <li>
+                  <button class="help-button" type="button">
+                      <div class="help-icon"><i class="fa-regular fa-circle-question"></i></div>
+                      <div class="help-text">Help</div>
+                  </button>
+              </li>
+              <li><button class="side-panel-toggle" type="button">
+                <span class="fa-solid fa-map"></span>
+                <span>Map Layers</span>
+              </button></li>
+              <li><button class="zoom-out" type="button">
+                <span class="fa-solid fa-magnifying-glass-minus"></span>
+                <span>Zoom Out</span>
+              </button></li>
+              <li><button class="zoom-in" type="button">
+                <span class="fa-solid fa-magnifying-glass-plus"></span>
+                <span>Zoom In</span>
+              </button></li>
+              <li><button class="modal-form-open" type="button">
+                <span class="fa-solid fa-plus"></span>
+                <span>Add Pin</span>
+            </button></li>
+            </ul>
+        </nav>  
+    </main>
+    <div class="side-panel">
+      <div class="drag">
+        <img src="images/Drag.png" alt="The logo of the Drag and Spruce Lake Property Owners Association" width="150"
+          height="150">
+        <br>
+        <button class="styler" onclick="cycleStyles()">Colourblind Filters</button>
+        <button class="side-panel-close" type="button">
+          <span class="fa-solid fa-angles-left"></span>
+          <span>Close Menu</span>
+        </button>
+      </div>
+      <ol class='dropdown'>
+        <li>
+          <button class="toggle">Pins:</button>
+          <ol class="content">
+            <li><label><input type="checkbox" data-layer="BirdWatchingPoints" checked> Bird Watching Points</label>
+            </li>
+            <li><label><input type="checkbox" data-layer="BeaverDams" checked> Beaver Dams</label></li>
+          </ol>
+        </li>
+        <li>
+          <button class="toggle">Routes:</button>
+          <ol class="content">
+            <li><label><input type="checkbox" data-layer="KayakingRoutes" checked> Kayaking Routes</label></li>
+          </ol>
+        </li>
+        <li>
+          <button class="toggle">Layers:</button>
+          <ol class="content">
+            <li><label><input type="checkbox" data-layer="Hazards" checked> Hazards</label></li>
+            <li><label><input type="checkbox" data-layer="InvasiveSpecies" checked> Invasive Species</label></li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <footer>&copy; 2025 - Farzad Imran, Tristan Berridge, Manpreet Kuar, Parmeet Kuar and Srijan Verma</footer>
+</body>
+
+</html>

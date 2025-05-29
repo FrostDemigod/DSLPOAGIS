@@ -1,6 +1,6 @@
 <?php
 session_start();
-require './includes/library.php';
+require '../includes/library.php';
 
 try {
     // Establish the PDO connection
@@ -74,7 +74,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create an Account</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
     <header>

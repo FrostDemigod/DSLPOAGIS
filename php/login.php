@@ -1,6 +1,6 @@
 <?php
 session_start();
-require './includes/library.php';
+require '../includes/library.php';
 
 // Establish the database connection
 $pdo = connectDB();  // Ensure this is done before any queries are executed

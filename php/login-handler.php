@@ -1,6 +1,6 @@
 <?php
 session_start();
-require './includes/library.php';
+require '../includes/library.php';
 
 try {
     $pdo = connectDB();
